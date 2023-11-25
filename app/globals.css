@@ -40,6 +40,10 @@ body {
   @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
 }
 
+.head_text_sec {
+  @apply mt-5 text-2xl font-extrabold leading-[1.00] text-gray-600 sm:text-6xl;
+}
+
 .flex-center {
   @apply flex justify-center items-center;
 }
@@ -75,6 +79,12 @@ body {
 .centered-text {
   text-align: left;
   margin-left: 3vw;
+}
+/* //content: "\26A1"; */
+
+.lightning-effect {
+  color: white;
+  /* Add other styles as needed */
 }
 
 /* body {

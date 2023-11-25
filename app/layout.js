@@ -5,7 +5,7 @@ import Nav from "/components/Nav";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Isetricity Energy",
+  title: "ISEtricity Energy",
   description:
     "Web application for management of the Isetricity midwestern infrastructure.",
 };

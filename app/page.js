@@ -9,21 +9,32 @@ import ImageList from "@/components/ImageList";
 export default function Home() {
   return (
     <>
-      <section className='w-full flex-col gradientBackground home-page body'>
-        <div className='flex-center mb-10'>
-          <h1 className='head_text text-left'>
-            Isetricity Energy
+      <section className='w-full gradientBackground min-h-screen'>
+        {/* <div className='flex-center mb-10'> */}
+        {/* <div className='flex-row flex justify-around w-full'>
+          <div>
+            <h1 className='head_text text-left'>Isetricity Energy</h1>
             <br className='max-md:hidden' />
-            <span className='max-md:hidden text-center'>
+            <span className='max-md:hidden text-center text-gray-600 text-4xl '>
               Delivering Reliable Service to the Midwest
             </span>
-          </h1>
-        </div>
+          </div>
+          <div styles={{ minWidth: "358px" }}> a</div>
+        </div> */}
 
         <div className='flex-row flex justify-around w-full '>
           <div className='flex-col flex-start'>
+            <h1 className='head_text text-left centered-text'>
+              {/* <span className='lightning-effect text-white'>&#x26A1;</span> */}
+              <span className=' text-white'>ISE</span>
+              <span className='text-blue-500'>tricity</span>
+              <span> Energy</span>
+            </h1>
+            <span className='max-md:hidden text-center text-gray-600 text-4xl centered-text mt-1'>
+              Delivering Reliable Service to the Midwest
+            </span>
             <p className='desc centered-text '>
-              At Isetricity, we proudly serve over 2 million customers
+              At ISEtricity, we proudly serve over 2 million customers
               throughout the heartland, providing electricity and natural gas
               services. Our commitment to delivering reliable energy remains
               unwavering as we navigate the dynamic landscape of power
@@ -38,6 +49,15 @@ export default function Home() {
               diverse array of energy sources guarantees a steady supply for our
               diverse customer base, spanning households, farms, businesses, and
               large industrial users.
+            </p>
+
+            <p className='desc centered-text '>
+              Environmental stewardship is at the forefront of our operations.
+              Our coal-fueled plants are equipped with cutting-edge
+              environmental controls, minimizing the ecological impact of every
+              asset in our energy portfolio. Furthermore, we`&apos;`ve retired
+              older coal units in recent years, demonstrating our commitment to
+              sustainability.
             </p>
 
             <p className='desc centered-text '>
@@ -58,10 +78,15 @@ export default function Home() {
               height='225'
               className='mb-5 mr-14'
             /> */}
-            <span className='max-md:hidden'>
+            <span className='max-md:hidden mt-7'>
               <ImageList />
             </span>
-            <span className='max-md:hidden'>
+            <span className='max-md:hidden flex-center flex-col'>
+              <div className='mt-3'>
+                <span className='desc'>2023 </span>
+                <span className='lightning-effect text-white'>&#x26A1;</span>
+                <span className='desc'> Generation</span>
+              </div>
               <DoughnutChart className='mt-5 max-h-fit' />
             </span>
           </div>
