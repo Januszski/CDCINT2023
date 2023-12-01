@@ -5,6 +5,7 @@ import "./globals.css";
 import PieChart from "@/components/DoughnutChart";
 import DoughnutChart from "@/components/DoughnutChart";
 import ImageList from "@/components/ImageList";
+import Typewriter from "@/components/TypeWriter";
 
 export default function Home() {
   return (
@@ -26,13 +27,15 @@ export default function Home() {
           <div className='flex-col flex-start'>
             <h1 className='head_text text-left centered-text'>
               {/* <span className='lightning-effect text-white'>&#x26A1;</span> */}
+
               <span className=' text-white'>ISE</span>
               <span className='text-blue-500'>tricity</span>
               <span> Energy</span>
             </h1>
             <span className='max-md:hidden text-center text-gray-600 text-4xl centered-text mt-1'>
-              Delivering Reliable Service to the Midwest
+              <Typewriter text='Deelivering Reliable Service to the Midwest' />
             </span>
+
             <p className='desc centered-text '>
               At ISEtricity, we proudly serve over 2 million customers
               throughout the heartland, providing electricity and natural gas

@@ -94,6 +94,17 @@ body {
   /* Add other styles as needed */
 }
 
+.slidingText {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.slideIn {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

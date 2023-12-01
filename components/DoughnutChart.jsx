@@ -2,6 +2,7 @@ import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { useEffect } from "react";
+import Image from "next/image";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -41,6 +42,45 @@ export const data = {
   // },
 };
 
+const textCenter = {
+  id: "textCenter",
+  beforeDatasetsDraw(chart, args, pluginOptions) {
+    const { ctx, data } = chart;
+
+    ctx.save();
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(
+      "text",
+      chart.getDatasetMeta(0).data[0].x,
+      chart.getDatasetMeta(0).data[0].y
+    );
+  },
+};
+
+const imageCenter = {
+  id: "imageCenter",
+  beforeDatasetsDraw(chart, args, pluginOptions) {
+    const { ctx, data } = chart;
+    const image = document.createElement("img");
+    image.src = "/frontpage/sphere-power.gif"; // Image URL
+    image.width = 40; // Image width
+    image.height = 40; // Image height
+
+    const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
+    const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
+
+    ctx.drawImage(
+      image,
+      centerX - image.width / 2,
+      centerY - image.height / 2,
+      image.width,
+      image.height
+    );
+  },
+};
+
 const options = {
   plugins: {
     title: {
@@ -59,6 +99,13 @@ export default function DoughnutChart() {
   return (
     <div className=' max-h-100'>
       <Doughnut data={data} options={options} />
+      {/* <Image
+        src='/frontpage/sphere-power.gif'
+        alt='logo'
+        width={40}
+        height={40}
+        className='object-contain ml-1.5 border-blue-500 '
+      /> */}
     </div>
   );
 }
