@@ -105,6 +105,12 @@ body {
   transform: translateX(0);
 }
 
+.check {
+  border-width: 2px;
+  border-color: #e3342f; /* Red color, you can adjust the color code as needed */
+  border-style: solid;
+}
+
 /* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
