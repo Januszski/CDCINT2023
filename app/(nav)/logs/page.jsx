@@ -12,6 +12,7 @@ import { dateAtom, timeRangeAtom } from "@/app/atom";
 import Calendar from "@/components/logs/Calendar";
 import Slider from "@/components/logs/Slider";
 import TimeBox from "@/components/logs/TimeBox";
+import backgroundImage from "../../../public/webb-dark.png";
 
 const page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -20,18 +21,24 @@ const page = () => {
 
   return (
     <>
-      <div className='flex-row flex '>
-        <div className='flex-start flex-col  check min-content max-w-min'>
-          <div>
-            <Calendar />
+      <div
+        style={{ backgroundImage: `url(${backgroundImage.src})` }}
+        className='w-full min-h-screen'
+      >
+        <div className='flex-row flex '>
+          <div className='flex-start flex-col flex-between check  max-w-min '>
+            <div>
+              <Calendar />
+            </div>
+            <TimeBox time={time[0]} />
+
+            <TimeBox time={time[1]} />
+
+            <Slider />
           </div>
-          <TimeBox time={time[0]} />
-          <TimeBox time={time[1]} />
 
-          <Slider />
+          <span> aa</span>
         </div>
-
-        <span> aa</span>
       </div>
     </>
   );

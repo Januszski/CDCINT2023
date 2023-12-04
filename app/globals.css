@@ -111,6 +111,18 @@ body {
   border-style: solid;
 }
 
+.ambientBackground {
+  background-image: url("/public/webb-dark.png");
+}
+
+.background-container {
+  background-image: url("/public/beanstalk-dark.webp");
+  background-size: cover; /* Adjust as needed */
+  background-position: center; /* Adjust as needed */
+  background-repeat: no-repeat;
+  height: 100vh; /* Set the height to fill the entire viewport */
+}
+
 /* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
