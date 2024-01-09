@@ -17,11 +17,11 @@ export default function DateCalendarValue() {
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#FFFFFF", //C8102E
-        secondary: "#FFFFFF",
+        main: "#00FF41", //C8102E
+        secondary: "#00FF41",
       },
       secondary: {
-        main: "#FFFFFF",
+        main: "#00FF41",
         dark: false,
         light: true,
       },
@@ -38,75 +38,75 @@ export default function DateCalendarValue() {
               onChange={(newValue) => setDate(newValue)}
               sx={{
                 "& .MuiTypography-caption": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiPickersCalendarHeader-switchViewButton": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiPickersCalendarHeader-switchViewIcon": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiPickersCalendarHeader-root": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiPickersCalendarHeader-labelContainer": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiPickersCalendarHeader-label": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiPickersDay-root": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiDatePickerToolbar-root": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiDatePickerToolbar-title": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiPickersShortcuts-root": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiPickersShortcuts-root": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiPickersShortcuts-padding": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiPickersShortcuts-dense": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiPickersShortcuts-subheader": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiPickersActionBar-root": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiPickersActionBar-spacing": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiDatePickerToolbar-root": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiButton-root": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiButton-text": {
-                  color: "white", // Change this to your desired color for month text
+                  color: "#00FF41", // Change this to your desired color for month text
                 },
                 "& .MuiButton-textPrimary": {
-                  color: "white", // Change this to your desired color for the button text
+                  color: "#00FF41", // Change this to your desired color for the button text
                 },
                 "& .MuiButton-textSizeSmall": {
-                  color: "white", // Change this to your desired color for the button text
+                  color: "#00FF41", // Change this to your desired color for the button text
                 },
                 "& .MuiButton-textSizeLarge": {
-                  color: "white", // Change this to your desired color for the button text
+                  color: "#00FF41", // Change this to your desired color for the button text
                 },
                 "& .MuiButtonBase-root": {
-                  color: "white", // Change this to your desired color for the button icon
+                  color: "#00FF41", // Change this to your desired color for the button icon
                 },
-                color: "primary.main",
+                color: "#00FF41",
               }}
             />
           </LocalizationProvider>

@@ -132,3 +132,12 @@ body {
     )
     rgb(var(--background-start-rgb));
 } */
+
+.metal-border {
+  border: 10px solid transparent; /* Set border width */
+  background-image: url("../public/metal1.jpeg"); /* Set the metal texture image */
+  background-origin: border-box; /* Set the background origin to the border box */
+  background-clip: padding-box; /* Clip background to padding box */
+  padding: 10px; /* Add padding if needed */
+  display: inline-block; /* Make sure the border surrounds the content */
+}

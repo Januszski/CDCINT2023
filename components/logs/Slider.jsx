@@ -1,6 +1,10 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
+// import { timeRangeAtom } from "@/app/atom";
+import { dateAtom, timeRangeAtom } from "@/app/atom";
+import { atom, useAtom } from "jotai";
+import { useEffect } from "react";
 
 function valuetext(value) {
   return `${value}°C`;
@@ -23,7 +27,72 @@ export default function MinimumDistanceSlider() {
     }
   };
 
-  const [value2, setValue2] = React.useState([20, 37]);
+  const [value2, setValue2] = React.useState([0, 100]); ///////////
+  console.log("VALUES FOR SLIDER", value2);
+
+  const [time, setTime] = useAtom(timeRangeAtom); ///////////
+
+  let t = time;
+
+  let strTime = "";
+
+  function sliderToTime(val) {
+    if (val === 100) {
+      return "12:00 AM";
+    } else if (val > 95) {
+      return "11:00 PM";
+    } else if (val > 91) {
+      return "10:00 PM";
+    } else if (val > 87) {
+      return "9:00 PM";
+    } else if (val > 83) {
+      return "8:00 PM";
+    } else if (val > 79) {
+      return "7:00 PM";
+    } else if (val >= 75) {
+      return "6:00 PM";
+    } else if (val > 70) {
+      return "5:00 PM";
+    } else if (val > 66) {
+      return "4:00 PM";
+    } else if (val > 62) {
+      return "3:00 PM";
+    } else if (val > 58) {
+      return "2:00 PM";
+    } else if (val > 54) {
+      return "1:00 PM";
+    } else if (val >= 50) {
+      return "12:00 PM";
+    } else if (val > 45) {
+      return "11:00 AM";
+    } else if (val > 41) {
+      return "10:00 AM";
+    } else if (val > 37) {
+      return "9:00 AM";
+    } else if (val > 33) {
+      return "8:00 AM";
+    } else if (val > 29) {
+      return "7:00 AM";
+    } else if (val >= 25) {
+      return "6:00 AM";
+    } else if (val > 20) {
+      return "5:00 AM";
+    } else if (val > 16) {
+      return "4:00 AM";
+    } else if (val > 12) {
+      return "3:00 AM";
+    } else if (val > 8) {
+      return "2:00 AM";
+    } else if (val > 4) {
+      return "1:00 AM";
+    } else {
+      return "12:00 AM";
+    }
+  }
+
+  useEffect(() => {
+    setTime([sliderToTime(value2[0]), sliderToTime(value2[1])]);
+  }, [value2]);
 
   const handleChange2 = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
