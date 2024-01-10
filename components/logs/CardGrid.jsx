@@ -11,6 +11,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import Card from "@mui/material/Card";
 import { atom, useAtom } from "jotai";
 import { dateAtom, timeRangeAtom } from "@/app/atom";
+import dayjs from "dayjs";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -47,7 +48,7 @@ export default function BasicGrid({ array }) {
   function getLogsForDate(log) {
     const logDate = log.date;
     let monthVal = date.$M + 1;
-    monthVal = monthVal.toString();
+    monthVal = monthVal?.toString();
     let dayVal = date.$D?.toString();
     if (monthVal.length == 1) {
       monthVal = "0" + monthVal;
@@ -60,6 +61,7 @@ export default function BasicGrid({ array }) {
     console.log("DAYVAL", dayVal);
     console.log("YEAR", date.$y);
     console.log("LOGDATE", logDate);
+    console.log("DAYJS", dayjs(date));
 
     console.log("CHECKS:");
     console.log(
