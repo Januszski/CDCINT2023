@@ -13,6 +13,8 @@ import Calendar from "@/components/logs/Calendar";
 import Slider from "@/components/logs/Slider";
 import TimeBox from "@/components/logs/TimeBox";
 import backgroundImage from "../../../public/webb-dark.png";
+import CardGrid from "@/components/logs/CardGrid";
+import { array } from "../../mockData/logsArray";
 
 const page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -26,18 +28,24 @@ const page = () => {
         className='w-full min-h-screen'
       >
         <div className='flex-row flex '>
-          <div className='flex-start flex-col flex-between check  max-w-min '>
+          <div className=' check  max-w-min '>
             <div>
               <Calendar />
             </div>
             <TimeBox time={time[0]} />
 
             <TimeBox time={time[1]} />
-
-            <Slider />
+            <div className='mt-3 ml-3'>
+              <Slider />
+            </div>
           </div>
 
-          <span> aa</span>
+          <div className='scroll-container'>
+            {/* Container with a fixed height and overflow auto */}
+            <div className='card-grid-container'>
+              <CardGrid array={array} />
+            </div>
+          </div>
         </div>
       </div>
     </>

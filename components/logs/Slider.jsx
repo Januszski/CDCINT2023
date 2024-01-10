@@ -5,6 +5,7 @@ import Slider from "@mui/material/Slider";
 import { dateAtom, timeRangeAtom } from "@/app/atom";
 import { atom, useAtom } from "jotai";
 import { useEffect } from "react";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 function valuetext(value) {
   return `${value}°C`;
@@ -112,18 +113,33 @@ export default function MinimumDistanceSlider() {
     }
   };
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#00FF41", //C8102E
+        secondary: "#00FF41",
+      },
+      secondary: {
+        main: "#00FF41",
+        dark: false,
+        light: true,
+      },
+    },
+  });
   return (
-    <Box sx={{ width: 300 }}>
-      <Slider
-        getAriaLabel={() => "Minimum distance shift"}
-        value={value2}
-        onChange={handleChange2}
-        // valueLabelDisplay='auto'
-        getAriaValueText={valuetext}
-        step={4.16666666667}
-        // marks={marks}
-        disableSwap
-      />
-    </Box>
+    <ThemeProvider theme={theme}>
+      <Box sx={{ width: 300 }}>
+        <Slider
+          getAriaLabel={() => "Minimum distance shift"}
+          value={value2}
+          onChange={handleChange2}
+          // valueLabelDisplay='auto'
+          getAriaValueText={valuetext}
+          step={4.16666666667}
+          // marks={marks}
+          disableSwap
+        />
+      </Box>
+    </ThemeProvider>
   );
 }

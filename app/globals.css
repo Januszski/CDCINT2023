@@ -141,3 +141,13 @@ body {
   padding: 10px; /* Add padding if needed */
   display: inline-block; /* Make sure the border surrounds the content */
 }
+
+.scroll-container {
+  flex: 1; /* Use remaining available space */
+  overflow: hidden; /* Hide overflow for the main content */
+}
+
+.card-grid-container {
+  height: 100%; /* Set a fixed height for the scrollable area */
+  overflow: auto; /* Allow scrolling within the container */
+}
