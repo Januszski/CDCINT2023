@@ -64,63 +64,70 @@ ElevationScroll.propTypes = {
 
 export default function ElevateAppBar(props) {
   return (
-    <ThemeProvider theme={theme}>
-      <React.Fragment>
-        <CssBaseline />
-        <ElevationScroll {...props}>
-          <AppBar className=''>
-            <Toolbar>
-              <Link href='/' className='flex gap-1 '>
-                <Image
-                  src='/favicon.ico'
-                  alt='logo'
-                  width={40}
-                  height={40}
-                  className='object-contain ml-1.5 border-blue-500 '
-                />
-                {/* <p className='logo_text'>Isetricity Energy</p> */}
+    <div
+      style={{
+        // maxHeight: "92vh",
+        minHeight: "5vh",
+      }}
+    >
+      <ThemeProvider theme={theme}>
+        <React.Fragment>
+          <CssBaseline />
+          <ElevationScroll {...props}>
+            <AppBar className=''>
+              <Toolbar>
+                <Link href='/' className='flex gap-1 '>
+                  <Image
+                    src='/favicon.ico'
+                    alt='logo'
+                    width={40}
+                    height={40}
+                    className='object-contain ml-1.5 border-blue-500 '
+                  />
+                  {/* <p className='logo_text'>Isetricity Energy</p> */}
 
-                <div
-                  className={`${ZenDots.className} text-xl text-lg text-indigo-100`}
-                >
-                  ISE<span className='text-blue-500'>tricity</span>
-                </div>
-              </Link>
-              <div className='flex-grow'></div>
-              <ButtonGroup
-                variant='contained'
-                aria-label='outlined primary button group'
-              >
-                <Link href='/scada'>
-                  <Button
-                    className={`${ZenDots.className} text-xl text-blue-700`}
-                  >
-                    SCADA
-                  </Button>
-                </Link>
-                <Link href='/logs'>
-                  <Button
+                  <div
                     className={`${ZenDots.className} text-xl text-lg text-indigo-100`}
                   >
-                    LOGS
-                  </Button>
+                    ISE<span className='text-blue-500'>tricity</span>
+                  </div>
                 </Link>
-                <Link href='/docs'>
-                  <Button
-                    className={`${ZenDots.className} text-xl text-lg text-gray-400`}
-                  >
-                    DOCS
-                  </Button>
-                </Link>
-              </ButtonGroup>
-            </Toolbar>
-          </AppBar>
-        </ElevationScroll>
-        <Toolbar />
-        <Container>
-          {/* <Box sx={{ my: 2 }}>{[...new Array(12)].map().join("\n")}</Box> */}
-        </Container>
-      </React.Fragment>
-    </ThemeProvider>
+                <div className='flex-grow'></div>
+                <ButtonGroup
+                  variant='contained'
+                  aria-label='outlined primary button group'
+                >
+                  <Link href='/scada'>
+                    <Button
+                      className={`${ZenDots.className} text-xl text-blue-700`}
+                    >
+                      SCADA
+                    </Button>
+                  </Link>
+                  <Link href='/logs'>
+                    <Button
+                      className={`${ZenDots.className} text-xl text-lg text-indigo-100`}
+                    >
+                      LOGS
+                    </Button>
+                  </Link>
+                  <Link href='/docs'>
+                    <Button
+                      className={`${ZenDots.className} text-xl text-lg text-gray-400`}
+                    >
+                      DOCS
+                    </Button>
+                  </Link>
+                </ButtonGroup>
+              </Toolbar>
+            </AppBar>
+          </ElevationScroll>
+          <Toolbar />
+          <Container>
+            {/* <Box sx={{ my: 2 }}>{[...new Array(12)].map().join("\n")}</Box> */}
+          </Container>
+        </React.Fragment>
+      </ThemeProvider>
+    </div>
   );
 }

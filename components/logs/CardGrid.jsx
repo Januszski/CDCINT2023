@@ -12,6 +12,9 @@ import Card from "@mui/material/Card";
 import { atom, useAtom } from "jotai";
 import { dateAtom, timeRangeAtom } from "@/app/atom";
 import dayjs from "dayjs";
+import { Bebas_Neue } from "next/font/google";
+
+const Bebas = Bebas_Neue({ subsets: ["latin"], weight: "400" });
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -23,6 +26,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function BasicGrid({ array }) {
   const [date, setDate] = useAtom(dateAtom);
+  const [time, setTime] = useAtom(timeRangeAtom);
+
   console.log("Cal date", date);
   console.log("cal date DAY", date.$D);
   const theme = createTheme({
@@ -44,6 +49,43 @@ export default function BasicGrid({ array }) {
   });
 
   const shownLogs = array.filter(getLogsForDate);
+  const finalShownLogs = shownLogs.filter(getLogsForTime);
+
+  function getLogsForTime(log) {
+    let timeLow = Number(time[0].split(":")[0]);
+    let timeHigh = Number(time[1].split(":")[0]);
+
+    const signLow = time[0].substr(time[0].length - 2);
+    const signHigh = time[1].substr(time[1].length - 2);
+
+    if (signLow == "PM" && timeLow != 12) {
+      timeLow += 12;
+    }
+    if (signHigh == "PM" && timeHigh != 12) {
+      timeHigh += 12;
+    }
+
+    if (timeHigh === 12) {
+      timeHigh = 24;
+    }
+    if (timeLow === 12) {
+      timeLow = 0;
+    }
+
+    const logHour = Number(log.time.split(":")[0]);
+    const logMinute = Number(log.time.split(":")[1]);
+    const logSecond = Number(log.time.split(":")[2]);
+
+    if (logHour < timeLow || logHour > timeHigh) {
+      return false;
+    }
+
+    if (logHour === timeHigh && (logMinute > 0 || logSecond > 0)) {
+      return false;
+    }
+
+    return true;
+  }
 
   function getLogsForDate(log) {
     const logDate = log.date;
@@ -57,18 +99,6 @@ export default function BasicGrid({ array }) {
       dayVal = "0" + date.$D;
     }
 
-    console.log("MONTHVAL", monthVal);
-    console.log("DAYVAL", dayVal);
-    console.log("YEAR", date.$y);
-    console.log("LOGDATE", logDate);
-    console.log("DAYJS", dayjs(date));
-
-    console.log("CHECKS:");
-    console.log(
-      `DOES ${date.$y} = ${logDate.slice(0, 4)}?`,
-      date.$y === logDate.slice(0, 4)
-    );
-
     if (
       date.$y.toString() === logDate.slice(0, 4) &&
       monthVal === logDate.slice(5, 7) &&
@@ -79,52 +109,65 @@ export default function BasicGrid({ array }) {
   }
 
   return (
-    <div className='max-h-screen'>
-      <Grid container flexDirection='row' columns={6} id='log-grid'>
-        {shownLogs?.map((log) => {
-          //console.log("LOG", log);
-          return (
-            <div className='m-1.5' key={log.id}>
-              <ThemeProvider theme={theme}>
-                <Card
-                  sx={{ minWidth: 275, maxWidth: 350 }}
-                  style={{
-                    backgroundColor: "rgba(0, 0, 0, 0.5)",
-                    border: "1px solid #00FF41", // Set the border style and width
-                    borderRadius: "50px",
-                  }}
-                >
-                  <CardContent>
-                    <Typography
-                      sx={{ fontSize: 14 }}
-                      color='#00FF41'
-                      gutterBottom
-                    >
-                      {log.date}
-                      {"    "}
-                      {log.time}
-                    </Typography>
-                    <Typography variant='h5' component='div' color='#00FF41'>
-                      {log.level}
-                    </Typography>
-                    <Typography sx={{ mb: 1.5 }} color='#00FF41'>
-                      {log.className}
-                    </Typography>
-                    <Typography variant='body2' color='#00FF41'>
-                      {log.message}
-                      <br />
-                      {log.comment}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size='small'>Learn More</Button>
-                  </CardActions>
-                </Card>
-              </ThemeProvider>
+    <div style={{ maxHeight: "80vh" }} className=' justify-end'>
+      <div>
+        <Grid container flexDirection='row' columns={6} id='log-grid'>
+          {finalShownLogs.length === 0 ? (
+            <div
+              className={`${Bebas.className} flex items-center justify-center`}
+              style={{ color: "#00FF41", fontSize: "2rem" }}
+            >
+              {" "}
+              No logs found for this date/time{" "}
             </div>
-          );
-        })}
-      </Grid>
+          ) : (
+            ""
+          )}
+          {finalShownLogs?.map((log) => {
+            //console.log("LOG", log);
+            return (
+              <div className='m-1.5' key={log.id}>
+                <ThemeProvider theme={theme}>
+                  <Card
+                    sx={{ minWidth: 275, maxWidth: 350 }}
+                    style={{
+                      backgroundColor: "rgba(0, 0, 0, 0.5)",
+                      border: "1px solid #00FF41", // Set the border style and width
+                      borderRadius: "50px",
+                    }}
+                  >
+                    <CardContent>
+                      <Typography
+                        sx={{ fontSize: 14 }}
+                        color='#00FF41'
+                        gutterBottom
+                      >
+                        {log.date}
+                        {"    "}
+                        {log.time}
+                      </Typography>
+                      <Typography variant='h5' component='div' color='#00FF41'>
+                        {log.level}
+                      </Typography>
+                      <Typography sx={{ mb: 1.5 }} color='#00FF41'>
+                        {log.className}
+                      </Typography>
+                      <Typography variant='body2' color='#00FF41'>
+                        {log.message}
+                        <br />
+                        {log.comment}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button size='small'>Learn More</Button>
+                    </CardActions>
+                  </Card>
+                </ThemeProvider>
+              </div>
+            );
+          })}
+        </Grid>
+      </div>
     </div>
   );
 }

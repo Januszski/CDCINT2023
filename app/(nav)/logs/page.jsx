@@ -24,11 +24,15 @@ const page = () => {
   return (
     <>
       <div
-        style={{ backgroundImage: `url(${backgroundImage.src})` }}
-        className='w-full min-h-screen'
+        style={{
+          backgroundImage: `url(${backgroundImage.src})`,
+          maxHeight: "94vh",
+          minHeight: "94vh",
+        }}
+        className='w-full '
       >
         <div className='flex-row flex '>
-          <div className=' check  max-w-min '>
+          <div className='   max-w-min '>
             <div>
               <Calendar />
             </div>
@@ -42,7 +46,7 @@ const page = () => {
 
           <div className='scroll-container'>
             {/* Container with a fixed height and overflow auto */}
-            <div className='card-grid-container'>
+            <div className='card-grid-container flex '>
               <CardGrid array={array} />
             </div>
           </div>

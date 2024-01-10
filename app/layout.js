@@ -14,7 +14,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className={inter.className}>
+        {/* <nav style={{ minHeight: "8vh", maxHeight: "8vh" }}> */}
         <Nav />
+        {/* </nav> */}
         {children}
       </body>
     </html>
