@@ -26,8 +26,7 @@ const page = () => {
       <div
         style={{
           backgroundImage: `url(${backgroundImage.src})`,
-          maxHeight: "94vh",
-          minHeight: "94vh",
+          height: "95vh",
         }}
         className='w-full '
       >

@@ -13,6 +13,7 @@ import { atom, useAtom } from "jotai";
 import { dateAtom, timeRangeAtom } from "@/app/atom";
 import dayjs from "dayjs";
 import { Bebas_Neue } from "next/font/google";
+import Link from "next/link";
 
 const Bebas = Bebas_Neue({ subsets: ["latin"], weight: "400" });
 
@@ -68,7 +69,7 @@ export default function BasicGrid({ array }) {
     if (timeHigh === 12) {
       timeHigh = 24;
     }
-    if (timeLow === 12) {
+    if (timeLow === 12 && signLow == "AM") {
       timeLow = 0;
     }
 
@@ -109,13 +110,13 @@ export default function BasicGrid({ array }) {
   }
 
   return (
-    <div style={{ maxHeight: "80vh" }} className=' justify-end'>
+    <div style={{ maxHeight: "95vh" }} className=' justify-end'>
       <div>
         <Grid container flexDirection='row' columns={6} id='log-grid'>
           {finalShownLogs.length === 0 ? (
             <div
               className={`${Bebas.className} flex items-center justify-center`}
-              style={{ color: "#00FF41", fontSize: "2rem" }}
+              style={{ color: "#00FF41", fontSize: "2rem", marginTop: "15px" }}
             >
               {" "}
               No logs found for this date/time{" "}
@@ -134,6 +135,8 @@ export default function BasicGrid({ array }) {
                       backgroundColor: "rgba(0, 0, 0, 0.5)",
                       border: "1px solid #00FF41", // Set the border style and width
                       borderRadius: "50px",
+                      marginTop: "15px",
+                      marginRight: "15px",
                     }}
                   >
                     <CardContent>
@@ -159,7 +162,9 @@ export default function BasicGrid({ array }) {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size='small'>Learn More</Button>
+                      <Link href={`/logs/${log.id}`}>
+                        <Button size='small'>View Raw</Button>
+                      </Link>
                     </CardActions>
                   </Card>
                 </ThemeProvider>

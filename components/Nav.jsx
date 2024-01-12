@@ -66,8 +66,7 @@ export default function ElevateAppBar(props) {
   return (
     <div
       style={{
-        // maxHeight: "92vh",
-        minHeight: "5vh",
+        height: "5vh",
       }}
     >
       <ThemeProvider theme={theme}>
