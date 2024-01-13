@@ -3032,6 +3032,16 @@ thenify-all@^1.0.0:
   dependencies:
     any-promise "^1.0.0"
 
+three@^0.160.0:
+  version "0.160.0"
+  resolved "https://registry.npmjs.org/three/-/three-0.160.0.tgz"
+  integrity sha512-DLU8lc0zNIPkM7rH5/e1Ks1Z8tWCGRq6g8mPowdDJpw1CFBJMU7UoJjC6PefXW7z//SSl0b2+GCw14LB+uDhng==
+
+threebox@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.npmjs.org/threebox/-/threebox-0.1.5.tgz"
+  integrity sha512-SAxLgJ6Qwqvzehic25DFkhJT7dPvWnwwHPgrAHoDZiIzlO5uG0CD1XPkv4kq6/lA94yK2Nf7BI8q5xCKdXBalw==
+
 tinyqueue@^2.0.3:
   version "2.0.3"
   resolved "https://registry.npmjs.org/tinyqueue/-/tinyqueue-2.0.3.tgz"
