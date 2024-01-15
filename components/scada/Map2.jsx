@@ -617,7 +617,7 @@ const Map2 = () => {
     // });
   }, [isPower]);
 
-  return <div ref={mapContainer} style={{ width: "100%", height: "100vh" }} />;
+  return <div ref={mapContainer} style={{ width: "77vw", height: "95vh" }} />;
 };
 
 export default Map2;
