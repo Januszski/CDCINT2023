@@ -9,6 +9,8 @@ import { isPowerAtom } from "@/app/atom";
 import "../../globals.css";
 import DisplayBox from "@/components/scada/DisplayBox";
 import InputkW from "@/components/scada/InputkW";
+import PowerReq from "@/components/scada/PowerReq";
+import OutputGauge from "@/components/scada/OutputGauge";
 
 const page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -25,15 +27,25 @@ const page = () => {
         className='w-full gradientBackground2'
       >
         <div style={{}} className='min-h-fit gradientBackground2'>
-          <div className='flex flex-end gradientBackground2'>
-            <div className='flex-col self-start'>
-              <div className='' style={{ marginTop: "1vh" }}>
-                <DisplayBox text={"POWER REQUIRED"} number={50} abr={"kW"} />
+          <div className='flex  gradientBackground2 '>
+            <div
+              className=''
+              style={{
+                marginTop: "1vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-evenly",
+              }}
+            >
+              <div className=''>
+                <PowerReq />{" "}
+              </div>{" "}
+              <div>
+                {" "}
+                <OutputGauge />
               </div>
               <div>
                 {" "}
-                <DisplayBox text={"CURRENT OUTPUT"} number={65} abr={"kW"} />
-                <DisplayBox text={"CURRENT POWER %"} number={79} abr={"%"} />
                 <InputkW />
               </div>
             </div>

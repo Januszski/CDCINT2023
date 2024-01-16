@@ -22,7 +22,8 @@ const Map2 = () => {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-      style: "mapbox://styles/iseman/clrch7ga5007k01pi8ax94dsj",
+      style: "mapbox://styles/iseman/clrgwcl7c00bw01pdatkc8gzo",
+      //mapbox://styles/iseman/clrch7ga5007k01pi8ax94dsj
       zoom: mapPos.zoom,
       //41.90901463647203, -92.18456352808276
       // ORIGINALLY -93.65096, 42.02842
@@ -357,7 +358,7 @@ const Map2 = () => {
     //42.028406523989474, -93.65091505315185
     ///mapass/coover/1437042.gltf
 
-    const modelOrigin4 = [-93.65091505315185, 42.028436523989474];
+    const modelOrigin4 = [-93.6508888, 42.028436523989474];
     const modelAltitude4 = 0;
 
     const modelAsMercatorCoordinate4 = mapboxgl.MercatorCoordinate.fromLngLat(

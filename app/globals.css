@@ -37,7 +37,7 @@ body {
 }
 .gradientBackground2 {
   background-color: "#FFFFFF";
-  background-image: linear-gradient(90deg, #d3d3d3 0%, #ffff00 100%);
+  background-image: linear-gradient(90deg, #a9a9a9 0%, #1942b3 100%);
 }
 .redBack {
   background-color: #c8102e;

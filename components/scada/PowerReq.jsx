@@ -1,30 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Highcharts from "highcharts";
 import HighchartsMore from "highcharts/highcharts-more";
 import HighchartsSolidGauge from "highcharts/modules/solid-gauge";
 
-HighchartsMore(Highcharts);
-HighchartsSolidGauge(Highcharts);
+if (typeof Highcharts === "object") {
+  HighchartsMore(Highcharts);
+  HighchartsSolidGauge(Highcharts);
+}
 
 const PowerReq = () => {
+  const container = React.useRef(null);
+
   useEffect(() => {
-    Highcharts.chart("container", {
+    Highcharts.chart(container.current, {
       chart: {
         type: "gauge",
         plotBackgroundColor: null,
         plotBackgroundImage: null,
         plotBorderWidth: 0,
         plotShadow: false,
-        height: "80%",
+        height: "60%",
+        backgroundColor: "transparent",
       },
 
       title: {
-        text: "Speedometer",
+        text: "&#x26A1; REQUESTED",
       },
 
       pane: {
         startAngle: -90,
-        endAngle: 89.9,
+        endAngle: 90,
         background: null,
         center: ["50%", "75%"],
         size: "110%",
@@ -33,13 +38,13 @@ const PowerReq = () => {
       // the value axis
       yAxis: {
         min: 0,
-        max: 200,
-        tickPixelInterval: 72,
+        max: 750,
+        tickPixelInterval: 30,
         tickPosition: "inside",
         tickColor: Highcharts.defaultOptions.chart.backgroundColor || "#FFFFFF",
         tickLength: 20,
         tickWidth: 2,
-        minorTickInterval: null,
+        minorTickInterval: 16,
         labels: {
           distance: 20,
           style: {
@@ -50,19 +55,19 @@ const PowerReq = () => {
         plotBands: [
           {
             from: 0,
-            to: 120,
+            to: 475,
             color: "#55BF3B", // green
             thickness: 20,
           },
           {
-            from: 120,
-            to: 160,
+            from: 475,
+            to: 650,
             color: "#DDDF0D", // yellow
             thickness: 20,
           },
           {
-            from: 160,
-            to: 200,
+            from: 650,
+            to: 750,
             color: "#DF5353", // red
             thickness: 20,
           },
@@ -71,13 +76,13 @@ const PowerReq = () => {
 
       series: [
         {
-          name: "Speed",
+          name: "Electricity",
           data: [80],
           tooltip: {
-            valueSuffix: " km/h",
+            valueSuffix: " kW",
           },
           dataLabels: {
-            format: "{y} km/h",
+            format: "{y} kW",
             borderWidth: 0,
             color:
               (Highcharts.defaultOptions.title &&
@@ -103,7 +108,7 @@ const PowerReq = () => {
       ],
     });
   });
-  return <div>PowerReq</div>;
+  return <div ref={container}></div>;
 };
 
 export default PowerReq;
