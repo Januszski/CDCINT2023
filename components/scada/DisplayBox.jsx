@@ -6,13 +6,14 @@ import { Black_Ops_One } from "next/font/google";
 
 const clock = Black_Ops_One({ subsets: ["latin"], weight: "400" });
 
-const DisplayBox = ({ text, number }) => {
+const DisplayBox = ({ text, number, abr }) => {
+  console.log("ABR", abr);
   return (
     <div
       style={{
         backgroundImage: `url(${backgroundImage.src})`,
         borderImage: `url(${metalImage.src}) 20% stretch`,
-        borderWidth: "40px",
+        borderWidth: "30px",
       }}
       className='  h-60 flex items-center justify-center'
     >
@@ -28,6 +29,12 @@ const DisplayBox = ({ text, number }) => {
           style={{ color: "#FF0000", fontSize: "2rem" }}
         >
           {number}
+        </span>
+        <span
+          className={`${clock.className} `}
+          style={{ color: "#FF0000", fontSize: "2rem" }}
+        >
+          {abr}
         </span>
       </div>{" "}
     </div>

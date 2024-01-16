@@ -30,23 +30,30 @@ const page = () => {
         }}
         className='w-full '
       >
-        <div className='flex-row flex '>
-          <div className='   max-w-min '>
-            <div>
-              <Calendar />
-            </div>
-            <TimeBox time={time[0]} />
+        <div
+          style={{
+            backgroundImage: `url(${backgroundImage.src})`,
+          }}
+          className='min-h-fit'
+        >
+          <div className='flex-row flex '>
+            <div className='   max-w-min '>
+              <div>
+                <Calendar />
+              </div>
+              <TimeBox time={time[0]} />
 
-            <TimeBox time={time[1]} />
-            <div className='mt-3 ml-3'>
-              <Slider />
+              <TimeBox time={time[1]} />
+              <div className='mt-3 ml-3'>
+                <Slider />
+              </div>
             </div>
-          </div>
 
-          <div className='scroll-container'>
-            {/* Container with a fixed height and overflow auto */}
-            <div className='card-grid-container flex '>
-              <CardGrid array={array} />
+            <div className='scroll-container'>
+              {/* Container with a fixed height and overflow auto */}
+              <div className='card-grid-container flex '>
+                <CardGrid array={array} />
+              </div>
             </div>
           </div>
         </div>

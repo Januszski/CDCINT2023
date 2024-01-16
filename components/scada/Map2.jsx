@@ -4,6 +4,7 @@ import Threebox from "threebox/src/Threebox";
 import "./styles.css";
 // import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+
 import { atom, useAtom } from "jotai";
 import { isPowerAtom, mapPosAtom } from "@/app/atom";
 
@@ -99,8 +100,8 @@ const Map2 = () => {
         //"https://docs.mapbox.com/mapbox-gl-js/assets/34M_17/34M_17.gltf"
         // use the three.js GLTF loader to add the 3D model to the three.js scene
         const loader = new GLTFLoader();
-        console.log("POSTLOADER");
         loader.load("/mapass/substation/scene.gltf", (gltf) => {
+          console.log("SCENE");
           this.scene.add(gltf.scene);
         });
 
@@ -353,10 +354,110 @@ const Map2 = () => {
       },
     };
 
+    //42.028406523989474, -93.65091505315185
+    ///mapass/coover/1437042.gltf
+
+    const modelOrigin4 = [-93.65091505315185, 42.028436523989474];
+    const modelAltitude4 = 0;
+
+    const modelAsMercatorCoordinate4 = mapboxgl.MercatorCoordinate.fromLngLat(
+      modelOrigin4,
+      modelAltitude4
+    );
+
+    // transformation parameters to position, rotate and scale the 3D model onto the map
+    const modelTransform4 = {
+      translateX: modelAsMercatorCoordinate4.x,
+      translateY: modelAsMercatorCoordinate4.y,
+      translateZ: modelAsMercatorCoordinate4.z,
+      rotateX: modelRotate[0],
+      rotateY: modelRotate[1],
+      rotateZ: modelRotate[2],
+      /* Since the 3D model is in real world meters, a scale transform needs to be
+       * applied since the CustomLayerInterface expects units in MercatorCoordinates.
+       */
+      scale: modelAsMercatorCoordinate2.meterInMercatorCoordinateUnits(),
+    };
+
+    //SECOND GRID HERE ///////////////////////////////////////
+    const customLayer4 = {
+      id: "3d-model4",
+      type: "custom",
+      renderingMode: "3d",
+      onAdd: function (map, gl) {
+        this.camera = new THREE.Camera();
+        this.scene = new THREE.Scene();
+
+        // create two three.js lights to illuminate the model
+        const directionalLight = new THREE.DirectionalLight(0xffffff);
+        directionalLight.position.set(0, -70, 100).normalize();
+        this.scene.add(directionalLight);
+
+        const directionalLight2 = new THREE.DirectionalLight(0xffffff);
+        directionalLight2.position.set(0, 70, 100).normalize();
+        this.scene.add(directionalLight2);
+        //"https://docs.mapbox.com/mapbox-gl-js/assets/34M_17/34M_17.gltf"
+        // use the three.js GLTF loader to add the 3D model to the three.js scene
+        const loader = new GLTFLoader();
+        loader.load("/mapass/coover/1437042.gltf", (gltf) => {
+          this.scene.add(gltf.scene);
+        });
+
+        this.map = map;
+
+        // use the Mapbox GL JS map canvas for three.js
+        this.renderer = new THREE.WebGLRenderer({
+          canvas: map.getCanvas(),
+          context: gl,
+          antialias: true,
+        });
+
+        this.renderer.autoClear = false;
+      },
+      render: function (gl, matrix) {
+        const rotationX = new THREE.Matrix4().makeRotationAxis(
+          new THREE.Vector3(1, 0, 0),
+          modelTransform4.rotateX
+        );
+        const rotationY = new THREE.Matrix4().makeRotationAxis(
+          new THREE.Vector3(0, 1, 0),
+          modelTransform4.rotateY
+        );
+        const rotationZ = new THREE.Matrix4().makeRotationAxis(
+          new THREE.Vector3(0, 0, 1),
+          modelTransform4.rotateZ
+        );
+
+        const m = new THREE.Matrix4().fromArray(matrix);
+        const l = new THREE.Matrix4()
+          .makeTranslation(
+            modelTransform4.translateX,
+            modelTransform4.translateY,
+            modelTransform4.translateZ
+          )
+          .scale(
+            new THREE.Vector3(
+              modelTransform4.scale,
+              -modelTransform4.scale,
+              modelTransform4.scale
+            )
+          )
+          .multiply(rotationX)
+          .multiply(rotationY)
+          .multiply(rotationZ);
+
+        this.camera.projectionMatrix = m.multiply(l);
+        this.renderer.resetState();
+        this.renderer.render(this.scene, this.camera);
+        this.map.triggerRepaint();
+      },
+    };
+
     map.on("load", () => {
       map.addLayer(customLayer, "waterway-label");
       map.addLayer(customLayer2, "waterway-label");
       map.addLayer(customLayer3, "waterway-label");
+      map.addLayer(customLayer4, "waterway-label");
     });
 
     //    const modelOrigin = [-93.32384961062884, 41.632992292783015];
