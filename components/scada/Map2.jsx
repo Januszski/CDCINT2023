@@ -24,6 +24,8 @@ const Map2 = () => {
       // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
       style: "mapbox://styles/iseman/clrgwcl7c00bw01pdatkc8gzo",
       //mapbox://styles/iseman/clrch7ga5007k01pi8ax94dsj
+      minZoom: 5,
+
       zoom: mapPos.zoom,
       //41.90901463647203, -92.18456352808276
       // ORIGINALLY -93.65096, 42.02842

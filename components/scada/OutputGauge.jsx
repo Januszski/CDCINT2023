@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsMore from "highcharts/highcharts-more";
 import HighchartsSolidGauge from "highcharts/modules/solid-gauge";
@@ -8,8 +8,32 @@ if (typeof Highcharts === "object") {
   HighchartsSolidGauge(Highcharts);
 }
 const OutputGauge = () => {
-  const containerOutput = React.useRef(null);
-  const containerPercentage = React.useRef(null);
+  const containerOutput = useRef(null);
+  const containerPercentage = useRef(null);
+  const [outputVal, setOutputVal] = useState(0);
+  const [outputPercentage, setOutputPercentage] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/generator/status");
+        const dataJSON = await response.json();
+
+        console.log(dataJSON);
+
+        setOutputVal(dataJSON.output);
+        setOutputPercentage(dataJSON.percentage);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+
+    const intervalId = setInterval(fetchData, 60000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   useEffect(() => {
     const gaugeOptions = {
@@ -96,7 +120,7 @@ const OutputGauge = () => {
         series: [
           {
             name: "Output",
-            data: [350],
+            data: [outputVal],
             dataLabels: {
               format:
                 '<div style="text-align:center">' +
@@ -130,11 +154,11 @@ const OutputGauge = () => {
         series: [
           {
             name: "POWER %",
-            data: [1],
+            data: [outputPercentage],
             dataLabels: {
               format:
                 '<div style="text-align:center">' +
-                '<span style="font-size:25px">{y:.1f}</span><br/>' +
+                '<span style="font-size:25px">{y}</span><br/>' +
                 '<span style="font-size:12px;opacity:0.4">' +
                 "%" +
                 "</span>" +

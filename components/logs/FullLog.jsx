@@ -12,6 +12,8 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import Stack from "@mui/material/Stack";
 import { atom, useAtom } from "jotai";
 import { dateAtom, timeRangeAtom, logDataAtom } from "@/app/atom";
+import { createTheme, ThemeProvider } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 import { useState, useEffect } from "react";
 
@@ -21,7 +23,7 @@ const FullLog = ({ params }) => {
 
   console.log("TEXTVAL", textValue);
 
-  const handleSend = async (commentText) => {
+  const handleSend = async () => {
     const response = await fetch(`http://localhost:8080/${params.id}/comment`, {
       method: "PUT", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, *cors, same-origin
@@ -77,58 +79,93 @@ const FullLog = ({ params }) => {
   const handleInputChange = (event) => {
     setTextValue(event.target.value);
   };
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#00FF41", //C8102E
+        secondary: "#00FF41",
+      },
+      secondary: {
+        main: "#00FF41",
+        dark: false,
+        light: true,
+      },
+    },
+  });
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-          // backgroundImage: `url(${backgroundImage.src})`,
-        }}
-      >
-        <div>
-          <br />
-          <div>id: {data && shownLog[0].id}</div>
-          <br />
-          <div>date: {data && shownLog[0].date}</div>
-          <br />
-          <div>time: {data && shownLog[0].time}</div>
-          <br />
-          <div>level: {data && shownLog[0].level}</div>
-          <br />
-          <div>message: {data && shownLog[0].message}</div>
-          <br />
-          <div>className: {data && shownLog[0].className}</div>
-          <br />
-          <div>comment: {data && shownLog[0].comment}</div>
-          <br />
-          <div>dateCommented: {data && shownLog[0].dateCommented}</div>
-          <br />
-          <div>timeCommented: {data && shownLog[0].timeCommented}</div>
-          <br />
-          <FormControl variant='standard'>
-            <InputLabel htmlFor='input-with-icon-adornment'>
-              Edit comment
-            </InputLabel>
-            <Input
-              onChange={handleInputChange}
-              value={textValue}
-              id='input-with-icon-adornment'
-              //inputProps={{ maxLength: 30 }}
-              startAdornment={
-                <InputAdornment position='start'>
-                  <AccountCircle />
-                </InputAdornment>
-              }
-            />
-          </FormControl>
-          <Button variant='contained' endIcon={<SendIcon />}>
-            Send
-          </Button>
+      <ThemeProvider theme={theme}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+
+            //   backgroundImage: `url(${backgroundImage.src})`,
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              border: "1px solid #00FF41",
+              borderRadius: "50px",
+              padding: "75px",
+              color: "#00FF41",
+            }}
+          >
+            <br />
+            <div style={{}}>id: {data && shownLog[0].id}</div>
+            <br />
+            <div>date: {data && shownLog[0].date}</div>
+            <br />
+            <div>time: {data && shownLog[0].time}</div>
+            <br />
+            <div>level: {data && shownLog[0].level}</div>
+            <br />
+            <div>message: {data && shownLog[0].message}</div>
+            <br />
+            <div>className: {data && shownLog[0].className}</div>
+            <br />
+            <div>comment: {data && shownLog[0].comment}</div>
+            <br />
+            <div>dateCommented: {data && shownLog[0].dateCommented}</div>
+            <br />
+            <div>timeCommented: {data && shownLog[0].timeCommented}</div>
+            <br />
+            <FormControl variant='standard' style={{ color: "#00FF41" }}>
+              <InputLabel htmlFor='input-with-icon-adornment'>
+                <Typography component='div' color='#00FF41'>
+                  {data && shownLog[0].comment ? "Edit comment" : "Add comment"}
+                </Typography>
+              </InputLabel>
+              <Input
+                style={{ color: "#00FF41" }}
+                onChange={handleInputChange}
+                value={textValue}
+                id='input-with-icon-adornment'
+                // color="#00FF41"
+                //inputProps={{ maxLength: 30 }}
+                startAdornment={
+                  <InputAdornment position='start' style={{ color: "#00FF41" }}>
+                    <AccountCircle />
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <Button
+              onClick={handleSend}
+              variant='contained'
+              endIcon={<SendIcon style={{ color: "#00FF41" }} />}
+            >
+              <Typography component='div' color='#00FF41'>
+                Send
+              </Typography>
+            </Button>
+          </div>
         </div>
-      </div>
+      </ThemeProvider>
     </>
   );
 };

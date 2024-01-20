@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
 import FullLog from "@/components/logs/FullLog";
+import backgroundImage from "../../../../public/webb-dark.png";
 
 const page = ({ params }) => {
   // const shownLog = array.filter((log) => {
@@ -16,7 +17,15 @@ const page = ({ params }) => {
 
   return (
     <>
-      <FullLog />
+      <div
+        style={{
+          backgroundImage: `url(${backgroundImage.src})`,
+          height: "100vh",
+        }}
+        className='w-full'
+      >
+        <FullLog params={params} />
+      </div>
     </>
   );
 };
