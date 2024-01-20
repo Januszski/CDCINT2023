@@ -719,7 +719,12 @@ const Map2 = () => {
     // });
   }, [isPower]);
 
-  return <div ref={mapContainer} style={{ width: "77vw", height: "95vh" }} />;
+  return (
+    <div
+      ref={mapContainer}
+      style={{ width: "77vw", minHeight: "95vh", height: "100%" }}
+    />
+  );
 };
 
 export default Map2;

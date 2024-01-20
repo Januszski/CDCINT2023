@@ -76,7 +76,7 @@ const PowerReq = () => {
 
       series: [
         {
-          name: "Electricity",
+          name: "Electricity needed",
           data: [80],
           tooltip: {
             valueSuffix: " kW",

@@ -52,7 +52,7 @@ const page = () => {
             <div className='scroll-container'>
               {/* Container with a fixed height and overflow auto */}
               <div className='card-grid-container flex '>
-                <CardGrid array={array} />
+                <CardGrid />
               </div>
             </div>
           </div>

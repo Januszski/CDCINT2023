@@ -10,10 +10,11 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material";
 import Card from "@mui/material/Card";
 import { atom, useAtom } from "jotai";
-import { dateAtom, timeRangeAtom } from "@/app/atom";
+import { dateAtom, timeRangeAtom, logDataAtom } from "@/app/atom";
 import dayjs from "dayjs";
 import { Bebas_Neue } from "next/font/google";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const Bebas = Bebas_Neue({ subsets: ["latin"], weight: "400" });
 
@@ -25,9 +26,35 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function BasicGrid({ array }) {
+export default function BasicGrid() {
   const [date, setDate] = useAtom(dateAtom);
   const [time, setTime] = useAtom(timeRangeAtom);
+  const [data, setData] = useAtom(logDataAtom);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch data from /logs/all
+        const response = await fetch("http://localhost:8080/logs/all");
+        const dataJSON = await response.json();
+
+        // Handle the fetched data as needed
+        console.log(dataJSON);
+        setData(dataJSON);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    // Fetch data initially
+    fetchData();
+
+    // Set up interval to fetch data every minute (60000 milliseconds)
+    const intervalId = setInterval(fetchData, 60000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array to run the effect only once on mount
 
   console.log("Cal date", date);
   console.log("cal date DAY", date.$D);
@@ -45,12 +72,17 @@ export default function BasicGrid({ array }) {
     },
   });
 
-  array.sort(function (a, b) {
-    return a.time.localeCompare(b.time);
-  });
+  if (data !== undefined) {
+    data.sort(function (a, b) {
+      return a.time.localeCompare(b.time);
+    });
+  }
 
-  const shownLogs = array.filter(getLogsForDate);
-  const finalShownLogs = shownLogs.filter(getLogsForTime);
+  let finalShownLogs = [];
+  if (data !== undefined) {
+    const shownLogs = data.filter(getLogsForDate);
+    finalShownLogs = shownLogs.filter(getLogsForTime);
+  }
 
   function getLogsForTime(log) {
     let timeLow = Number(time[0].split(":")[0]);
@@ -110,7 +142,7 @@ export default function BasicGrid({ array }) {
   }
 
   return (
-    <div style={{ maxHeight: "95vh" }} className=' justify-end'>
+    <div style={{ maxHeight: "95vh" }} className=' justify-end mt-2'>
       <div>
         <Grid container flexDirection='row' columns={6} id='log-grid'>
           {finalShownLogs.length === 0 ? (
@@ -161,11 +193,19 @@ export default function BasicGrid({ array }) {
                         {log.comment}
                       </Typography>
                     </CardContent>
-                    <CardActions>
-                      <Link href={`/logs/${log.id}`}>
-                        <Button size='small'>View Raw</Button>
-                      </Link>
-                    </CardActions>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <CardActions>
+                        <Link href={`/logs/${log.id}`}>
+                          <Button size='small'>Inspect</Button>
+                        </Link>
+                      </CardActions>
+                    </div>
                   </Card>
                 </ThemeProvider>
               </div>

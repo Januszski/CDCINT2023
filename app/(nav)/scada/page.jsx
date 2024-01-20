@@ -24,9 +24,9 @@ const page = () => {
         style={{
           maxHeight: "95vh",
         }}
-        className='w-full gradientBackground2'
+        className=' gradientBackground2'
       >
-        <div style={{}} className='min-h-fit gradientBackground2'>
+        <div className='min-h-fit gradientBackground2'>
           <div className='flex  gradientBackground2 '>
             <div
               className=''
@@ -35,22 +35,25 @@ const page = () => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-evenly",
+                flexGrow: 1,
               }}
             >
-              <div className=''>
+              <div className='mt-2'>
                 <PowerReq />{" "}
               </div>{" "}
               <div>
                 {" "}
                 <OutputGauge />
               </div>
-              <div>
+              <div className='self-center'>
                 {" "}
                 <InputkW />
               </div>
             </div>
-            <button onClick={togglePower}>toggle power</button>
-            <Map2 />
+            {/* <button onClick={togglePower}>toggle power</button> */}
+            <div className='flex-end'>
+              <Map2 />
+            </div>
           </div>
         </div>
       </div>
