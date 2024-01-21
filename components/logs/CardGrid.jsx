@@ -33,31 +33,24 @@ export default function BasicGrid() {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        // Fetch data from /logs/all
-        const response = await fetch("http://localhost:8080/logs/all");
-        const dataJSON = await response.json();
+      console.log("prefetch");
+      const response = await fetch("http://localhost:8080/logs/all", {
+        method: "GET",
+        // mode: "no-cors",
+      });
+      const dataJSON = await response.json();
 
-        // Handle the fetched data as needed
-        console.log(dataJSON);
-        setData(dataJSON);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+      console.log("DATA", dataJSON);
+      setData(dataJSON);
     };
 
-    // Fetch data initially
     fetchData();
 
-    // Set up interval to fetch data every minute (60000 milliseconds)
-    const intervalId = setInterval(fetchData, 60000);
+    // const intervalId = setInterval(fetchData, 1000);
 
-    // Cleanup interval on component unmount
-    return () => clearInterval(intervalId);
-  }, []); // Empty dependency array to run the effect only once on mount
+    // return () => clearInterval(intervalId);
+  }, []);
 
-  console.log("Cal date", date);
-  console.log("cal date DAY", date.$D);
   const theme = createTheme({
     palette: {
       primary: {
@@ -73,6 +66,7 @@ export default function BasicGrid() {
   });
 
   if (data !== undefined) {
+    console.log("DATA HERE AT ERR", data);
     data.sort(function (a, b) {
       return a.time.localeCompare(b.time);
     });

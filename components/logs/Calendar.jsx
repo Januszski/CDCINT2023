@@ -12,7 +12,6 @@ export default function DateCalendarValue() {
   const [date, setDate] = useAtom(dateAtom);
   const [time, setTime] = useAtom(timeRangeAtom);
   const [value, setValue] = React.useState(dayjs("2022-04-17"));
-  console.log("date value", date);
 
   const theme = createTheme({
     palette: {

@@ -19,7 +19,7 @@ const OutputGauge = () => {
         const response = await fetch("http://localhost:8080/generator/status");
         const dataJSON = await response.json();
 
-        console.log(dataJSON);
+        console.log("OUTPUT DATA", dataJSON);
 
         setOutputVal(dataJSON.output);
         setOutputPercentage(dataJSON.percentage);
@@ -30,7 +30,7 @@ const OutputGauge = () => {
 
     fetchData();
 
-    const intervalId = setInterval(fetchData, 60000);
+    const intervalId = setInterval(fetchData, 4000);
 
     return () => clearInterval(intervalId);
   }, []);

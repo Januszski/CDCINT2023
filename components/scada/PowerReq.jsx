@@ -10,6 +10,44 @@ if (typeof Highcharts === "object") {
 
 const PowerReq = () => {
   const container = React.useRef(null);
+  const [data, setData] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch data from /logs/all
+        const response = await fetch(
+          `http://localhost:8080/substations/values`
+        );
+        const dataJSON = await response.json();
+
+        // Handle the fetched data as needed
+        console.log(dataJSON);
+        console.log(
+          "DATA VALUE",
+          dataJSON.substationOneValue +
+            dataJSON.substationTwoValue +
+            dataJSON.substationThreeValue
+        );
+        setData(
+          dataJSON.substationOneValue +
+            dataJSON.substationTwoValue +
+            dataJSON.substationThreeValue
+        );
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    // Fetch data initially
+    fetchData();
+
+    // Set up interval to fetch data every minute (60000 milliseconds)
+    const intervalId = setInterval(fetchData, 4000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array to run the effect only once on mount
 
   useEffect(() => {
     Highcharts.chart(container.current, {
@@ -77,7 +115,7 @@ const PowerReq = () => {
       series: [
         {
           name: "Electricity needed",
-          data: [80],
+          data: [data],
           tooltip: {
             valueSuffix: " kW",
           },
