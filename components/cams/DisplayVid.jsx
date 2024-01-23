@@ -34,7 +34,7 @@ const DisplayVid = () => {
           ref={videoRef}
           width='889'
           height='500'
-          controls
+          controls={false}
           autoPlay
           loop
           muted

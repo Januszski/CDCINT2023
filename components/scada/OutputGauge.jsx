@@ -22,7 +22,7 @@ const OutputGauge = () => {
         const response = await fetch("http://localhost:8080/generator/status");
         const dataJSON = await response.json();
 
-        console.log("OUTPUTVAL", dataJSON.output);
+        console.log("OUTPUTVAL 222", dataJSON.output);
 
         setOutputVal(dataJSON.output);
         setOutputPercentage(dataJSON.percentage);
@@ -35,14 +35,17 @@ const OutputGauge = () => {
 
     const intervalId = setInterval(fetchData, 4000);
 
-    if (outputVal === 0) {
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    console.log("OUTPUT VALUE HERE", outputPercentage);
+    if (outputPercentage === 0) {
       setIsPower(false);
     } else {
       setIsPower(true);
     }
-
-    return () => clearInterval(intervalId);
-  }, []);
+  }, [outputPercentage]);
 
   useEffect(() => {
     const gaugeOptions = {
@@ -108,42 +111,42 @@ const OutputGauge = () => {
     };
 
     // The output gauge
-    const chartSpeed = Highcharts.chart(
-      containerOutput.current,
-      Highcharts.merge(gaugeOptions, {
-        yAxis: {
-          min: 0,
-          max: 750,
-          title: {
-            text: "&#x26A1; OUTPUT",
-            style: {
-              color: "black", // Set the color to black
-            },
-          },
-        },
+    // const chartSpeed = Highcharts.chart(
+    //   containerOutput.current,
+    //   Highcharts.merge(gaugeOptions, {
+    //     yAxis: {
+    //       min: 0,
+    //       max: 750,
+    //       title: {
+    //         text: "&#x26A1; OUTPUT",
+    //         style: {
+    //           color: "black", // Set the color to black
+    //         },
+    //       },
+    //     },
 
-        credits: {
-          enabled: false,
-        },
+    //     credits: {
+    //       enabled: false,
+    //     },
 
-        series: [
-          {
-            name: "Output",
-            data: [outputVal],
-            dataLabels: {
-              format:
-                '<div style="text-align:center">' +
-                '<span style="font-size:25px">{y}</span><br/>' +
-                '<span style="font-size:12px;opacity:0.4">kW</span>' +
-                "</div>",
-            },
-            tooltip: {
-              valueSuffix: " kW",
-            },
-          },
-        ],
-      })
-    );
+    //     series: [
+    //       {
+    //         name: "Output",
+    //         data: [outputVal],
+    //         dataLabels: {
+    //           format:
+    //             '<div style="text-align:center">' +
+    //             '<span style="font-size:25px">{y}</span><br/>' +
+    //             '<span style="font-size:12px;opacity:0.4">kW</span>' +
+    //             "</div>",
+    //         },
+    //         tooltip: {
+    //           valueSuffix: " kW",
+    //         },
+    //       },
+    //     ],
+    //   })
+    // );
 
     // The percentage gauge
     const chartRpm = Highcharts.chart(

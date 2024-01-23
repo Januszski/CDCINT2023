@@ -58,7 +58,7 @@ export default function Home() {
               Environmental stewardship is at the forefront of our operations.
               Our coal-fueled plants are equipped with cutting-edge
               environmental controls, minimizing the ecological impact of every
-              asset in our energy portfolio. Furthermore, we`&apos;`ve retired
+              asset in our energy portfolio. Furthermore, we&apos;ve retired
               older coal units in recent years, demonstrating our commitment to
               sustainability.
             </p>
@@ -86,7 +86,7 @@ export default function Home() {
             </span>
             <span className='max-md:hidden flex-center flex-col'>
               <div className='mt-3'>
-                <span className='desc'>2023 </span>
+                <span className='desc'>2024 </span>
                 <span className='lightning-effect text-white'>&#x26A1;</span>
                 <span className='desc'> Generation</span>
               </div>

@@ -153,7 +153,7 @@ export default function BasicGrid() {
               <div className='m-1.5' key={log.id}>
                 <ThemeProvider theme={theme}>
                   <Card
-                    sx={{ minWidth: 275, maxWidth: 350 }}
+                    sx={{ minWidth: 225, maxWidth: 250 }}
                     style={{
                       backgroundColor: "rgba(0, 0, 0, 0.5)",
                       border: "1px solid #00FF41", // Set the border style and width
