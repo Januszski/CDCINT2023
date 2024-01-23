@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsMore from "highcharts/highcharts-more";
 import HighchartsSolidGauge from "highcharts/modules/solid-gauge";
+import { atom, useAtom } from "jotai";
+import { isPowerAtom } from "@/app/atom";
 
 if (typeof Highcharts === "object") {
   HighchartsMore(Highcharts);
@@ -12,6 +14,7 @@ const OutputGauge = () => {
   const containerPercentage = useRef(null);
   const [outputVal, setOutputVal] = useState(0);
   const [outputPercentage, setOutputPercentage] = useState(0);
+  const [isPower, setIsPower] = useAtom(isPowerAtom);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +22,7 @@ const OutputGauge = () => {
         const response = await fetch("http://localhost:8080/generator/status");
         const dataJSON = await response.json();
 
-        console.log("OUTPUT DATA", dataJSON);
+        console.log("OUTPUTVAL", dataJSON.output);
 
         setOutputVal(dataJSON.output);
         setOutputPercentage(dataJSON.percentage);
@@ -31,6 +34,12 @@ const OutputGauge = () => {
     fetchData();
 
     const intervalId = setInterval(fetchData, 4000);
+
+    if (outputVal === 0) {
+      setIsPower(false);
+    } else {
+      setIsPower(true);
+    }
 
     return () => clearInterval(intervalId);
   }, []);

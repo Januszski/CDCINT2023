@@ -20,8 +20,7 @@ import { useState, useEffect } from "react";
 const FullLog = ({ params }) => {
   const [data, setData] = useState("");
   const [textValue, setTextValue] = useState("");
-
-  console.log("TEXTVAL", textValue);
+  const [fetchNow, setFetchNow] = useState(false);
 
   const handleSend = async () => {
     const response = await fetch(
@@ -39,6 +38,7 @@ const FullLog = ({ params }) => {
         body: textValue ? textValue : " ", // body data type must match "Content-Type" header
       }
     );
+    setFetchNow((prevState) => !prevState);
     return response.json(); // parses JSON response into native JavaScript objects
   };
 
@@ -67,7 +67,7 @@ const FullLog = ({ params }) => {
 
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
-  }, []); // Empty dependency array to run the effect only once on mount
+  }, [fetchNow]); // Empty dependency array to run the effect only once on mount
 
   // if (data !== undefined) {
   //   const shownLog = data.filter((log) => {

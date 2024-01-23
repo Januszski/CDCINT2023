@@ -29,7 +29,6 @@ export default function MinimumDistanceSlider() {
   };
 
   const [value2, setValue2] = React.useState([0, 100]); ///////////
-  console.log("VALUES FOR SLIDER", value2);
 
   const [time, setTime] = useAtom(timeRangeAtom); ///////////
 

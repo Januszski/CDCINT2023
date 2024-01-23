@@ -7,7 +7,6 @@ import { Black_Ops_One } from "next/font/google";
 const clock = Black_Ops_One({ subsets: ["latin"], weight: "400" });
 
 const DisplayBox = ({ text, number, abr }) => {
-  console.log("ABR", abr);
   return (
     <div
       style={{

@@ -155,3 +155,7 @@ body {
   height: 100%; /* Set a fixed height for the scrollable area */
   overflow: auto; /* Allow scrolling within the container */
 }
+
+video {
+  pointer-events: none;
+}

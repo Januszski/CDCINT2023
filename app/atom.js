@@ -10,3 +10,5 @@ export const mapPosAtom = atom({
   pitch: 25,
   center: { lat: 42.02842, lng: -93.65096 },
 });
+export const videoAtom = atom("http://localhost:8000/CooverCam1.mp4");
+export const cameraAtom = atom(1);

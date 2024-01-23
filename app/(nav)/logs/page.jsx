@@ -15,11 +15,11 @@ import TimeBox from "@/components/logs/TimeBox";
 import backgroundImage from "../../../public/webb-dark.png";
 import CardGrid from "@/components/logs/CardGrid";
 import { array } from "../../mockData/logsArray";
+import MakeLog from "@/components/logs/MakeLog";
 
 const page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [time, setTime] = useAtom(timeRangeAtom);
-  console.log("TIME", time);
 
   return (
     <>
@@ -46,6 +46,9 @@ const page = () => {
               <TimeBox time={time[1]} />
               <div className='mt-3 ml-3'>
                 <Slider />
+              </div>
+              <div>
+                <MakeLog />
               </div>
             </div>
 

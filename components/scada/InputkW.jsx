@@ -21,7 +21,6 @@ const InputkW = () => {
 
   const handleSend = async () => {
     const inputObj = { percentage: Number(inputValue) };
-    console.log("SEND BUTTON HIT");
     const response = await fetch(`http://localhost:8080/generator/update`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -35,10 +34,30 @@ const InputkW = () => {
       body: JSON.stringify(inputObj), // body data type must match "Content-Type" header
     });
 
-    const responseJson = await response.json();
-    console.log("INPUT WAS", inputObj);
-    console.log("SENT DATA", responseJson);
-    return responseJson; // parses JSON response into native JavaScript objects
+    const targetNum = (Number(inputValue) / 100) * 750;
+    console.log("kW TARGET", targetNum);
+    //NOTE THIS IS NOT WORKING PROPERLY
+    const inputObj2 = {
+      substationOneValue: Number(targetNum / 3),
+      substationTwoValue: Number(targetNum / 3),
+      substationThreeValue: Number(targetNum / 3),
+    };
+    const response2 = await fetch(`http://localhost:8080/substations/update`, {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      // credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      // redirect: "follow", // manual, *follow, error
+      // referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(inputObj2), // body data type must match "Content-Type" header
+    });
+
+    // const responseJson = await response.json();
+
+    // return responseJson; // parses JSON response into native JavaScript objects
   };
 
   const theme = createTheme({

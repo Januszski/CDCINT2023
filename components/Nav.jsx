@@ -111,11 +111,12 @@ export default function ElevateAppBar(props) {
                       LOGS
                     </Button>
                   </Link>
-                  <Link href='/docs'>
+                  <Link href='/cams'>
                     <Button
-                      className={`${ZenDots.className} text-xl text-lg text-gray-400`}
+                      style={{ color: "#FF0000" }}
+                      className={`${ZenDots.className} text-xl text-lg `}
                     >
-                      DOCS
+                      CAMS
                     </Button>
                   </Link>
                 </ButtonGroup>

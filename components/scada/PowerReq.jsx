@@ -22,13 +22,7 @@ const PowerReq = () => {
         const dataJSON = await response.json();
 
         // Handle the fetched data as needed
-        console.log(dataJSON);
-        console.log(
-          "DATA VALUE",
-          dataJSON.substationOneValue +
-            dataJSON.substationTwoValue +
-            dataJSON.substationThreeValue
-        );
+
         setData(
           dataJSON.substationOneValue +
             dataJSON.substationTwoValue +

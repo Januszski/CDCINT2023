@@ -104,7 +104,6 @@ const Map2 = () => {
         // use the three.js GLTF loader to add the 3D model to the three.js scene
         const loader = new GLTFLoader();
         loader.load("/mapass/substation/scene.gltf", (gltf) => {
-          console.log("SCENE");
           this.scene.add(gltf.scene);
         });
 

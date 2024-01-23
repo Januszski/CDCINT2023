@@ -33,22 +33,20 @@ export default function BasicGrid() {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("prefetch");
       const response = await fetch("http://localhost:8080/logs/all", {
         method: "GET",
         // mode: "no-cors",
       });
       const dataJSON = await response.json();
 
-      console.log("DATA", dataJSON);
       setData(dataJSON);
     };
 
     fetchData();
 
-    // const intervalId = setInterval(fetchData, 1000);
+    const intervalId = setInterval(fetchData, 1000);
 
-    // return () => clearInterval(intervalId);
+    return () => clearInterval(intervalId);
   }, []);
 
   const theme = createTheme({
@@ -66,7 +64,6 @@ export default function BasicGrid() {
   });
 
   if (data !== undefined) {
-    console.log("DATA HERE AT ERR", data);
     data.sort(function (a, b) {
       return a.time.localeCompare(b.time);
     });
@@ -85,14 +82,14 @@ export default function BasicGrid() {
     const signLow = time[0].substr(time[0].length - 2);
     const signHigh = time[1].substr(time[1].length - 2);
 
-    if (signLow == "PM" && timeLow != 12) {
+    if (signLow === "PM" && timeLow !== 12) {
       timeLow += 12;
     }
-    if (signHigh == "PM" && timeHigh != 12) {
+    if (signHigh === "PM" && timeHigh !== 12) {
       timeHigh += 12;
     }
 
-    if (timeHigh === 12) {
+    if (timeHigh === 12 && signHigh === "AM") {
       timeHigh = 24;
     }
     if (timeLow === 12 && signLow == "AM") {
@@ -195,7 +192,11 @@ export default function BasicGrid() {
                       }}
                     >
                       <CardActions>
-                        <Link href={`/logs/${log.id}`}>
+                        <Link
+                          href={`/logs/${log.id}`}
+                          rel='noopener noreferrer'
+                          target='_blank'
+                        >
                           <Button size='small'>Inspect</Button>
                         </Link>
                       </CardActions>
