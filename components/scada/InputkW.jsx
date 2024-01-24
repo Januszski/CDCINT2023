@@ -85,6 +85,9 @@ const InputkW = () => {
           </FormHelperText>
         </FormControl> */}
       </Box>
+      <div style={{ color: "#FFFF00" }}>
+        Produce at % Capacity (100% = 750kW)
+      </div>
       <Box
         display='flex'
         flexDirection='row'

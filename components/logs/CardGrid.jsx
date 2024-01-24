@@ -33,9 +33,8 @@ export default function BasicGrid() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:8080/logs/all", {
+      const response = await fetch("http://10.48.83.70:8080/logs/all", {
         method: "GET",
-        // mode: "no-cors",
       });
       const dataJSON = await response.json();
 
@@ -44,7 +43,7 @@ export default function BasicGrid() {
 
     fetchData();
 
-    const intervalId = setInterval(fetchData, 1000);
+    const intervalId = setInterval(fetchData, 10000);
 
     return () => clearInterval(intervalId);
   }, []);

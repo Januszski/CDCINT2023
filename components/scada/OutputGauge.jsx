@@ -3,7 +3,6 @@ import Highcharts from "highcharts";
 import HighchartsMore from "highcharts/highcharts-more";
 import HighchartsSolidGauge from "highcharts/modules/solid-gauge";
 import { atom, useAtom } from "jotai";
-import { isPowerAtom } from "@/app/atom";
 
 if (typeof Highcharts === "object") {
   HighchartsMore(Highcharts);
@@ -14,7 +13,6 @@ const OutputGauge = () => {
   const containerPercentage = useRef(null);
   const [outputVal, setOutputVal] = useState(0);
   const [outputPercentage, setOutputPercentage] = useState(0);
-  const [isPower, setIsPower] = useAtom(isPowerAtom);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,19 +31,10 @@ const OutputGauge = () => {
 
     fetchData();
 
-    const intervalId = setInterval(fetchData, 4000);
+    const intervalId = setInterval(fetchData, 10000);
 
     return () => clearInterval(intervalId);
   }, []);
-
-  useEffect(() => {
-    console.log("OUTPUT VALUE HERE", outputPercentage);
-    if (outputPercentage === 0) {
-      setIsPower(false);
-    } else {
-      setIsPower(true);
-    }
-  }, [outputPercentage]);
 
   useEffect(() => {
     const gaugeOptions = {
