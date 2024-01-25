@@ -32,14 +32,6 @@ export const data = {
   updateMode: "resize",
   redraw: true,
   maintainAspectRatio: true,
-  // options: {
-  //   plugins: {
-  //     title: {
-  //       display: true,
-  //       text: "Energy Generation",
-  //     },
-  //   },
-  // },
 };
 
 const textCenter = {
@@ -64,9 +56,9 @@ const imageCenter = {
   beforeDatasetsDraw(chart, args, pluginOptions) {
     const { ctx, data } = chart;
     const image = document.createElement("img");
-    image.src = "/frontpage/sphere-power.gif"; // Image URL
-    image.width = 40; // Image width
-    image.height = 40; // Image height
+    image.src = "/frontpage/sphere-power.gif"; 
+    image.width = 40; 
+    image.height = 40; 
 
     const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
     const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;

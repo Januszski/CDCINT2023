@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import Threebox from "threebox/src/Threebox";
 import "./styles.css";
-// import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 import { atom, useAtom } from "jotai";
@@ -23,19 +22,15 @@ const Map2 = () => {
 
       const tempMap = new mapboxgl.Map({
         container: mapContainer.current,
-        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-        style: "mapbox://styles/iseman/clrgwcl7c00bw01pdatkc8gzo",
-        //mapbox://styles/iseman/clrch7ga5007k01pi8ax94dsj
-        //mapbox://styles/mapbox/dark-v11
-        //mapbox://styles/iseman/clrgwcl7c00bw01pdatkc8gzo?optimize=true
-        minZoom: 5,
+        style: "mapbox://styles/iseman/clrgwcl7c00bw01pdatkc8gzo?optimize=true",
+        
+        minZoom: 15,
 
         zoom: mapPos.zoom,
-        //41.90901463647203, -92.18456352808276
-        // ORIGINALLY -93.65096, 42.02842
+        
         center: [mapPos.center.lng, mapPos.center.lat],
         pitch: mapPos.pitch,
-        antialias: false, // create the gl context with MSAA antialiasing, so custom layers are antialiased
+        antialias: false, 
         projection: "mercator",
       });
       const geojson = {
@@ -66,7 +61,7 @@ const Map2 = () => {
             properties: {},
             geometry: {
               coordinates: [
-                //,
+                
                 [-93.65107091233199, 42.028252243975224],
                 [-93.57245897322866, 42.02756755600038],
 
@@ -218,7 +213,6 @@ const Map2 = () => {
       modelAltitude
     );
 
-    // transformation parameters to position, rotate and scale the 3D model onto the map
     const modelTransform = {
       translateX: modelAsMercatorCoordinate.x,
       translateY: modelAsMercatorCoordinate.y,
@@ -226,15 +220,12 @@ const Map2 = () => {
       rotateX: modelRotate[0],
       rotateY: modelRotate[1],
       rotateZ: modelRotate[2],
-      /* Since the 3D model is in real world meters, a scale transform needs to be
-       * applied since the CustomLayerInterface expects units in MercatorCoordinates.
-       */
+     
       scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits(),
     };
 
-    //const THREE = window.THREE;
 
-    // configuration of the custom layer for a 3D model per the CustomLayerInterface
+    
     const customLayer = {
       id: "3d-model",
       type: "custom",
@@ -243,7 +234,6 @@ const Map2 = () => {
         this.camera = new THREE.Camera();
         this.scene = new THREE.Scene();
 
-        // create two three.js lights to illuminate the model
         const directionalLight = new THREE.DirectionalLight(0xffffff);
         directionalLight.position.set(0, -70, 100).normalize();
         this.scene.add(directionalLight);
@@ -260,7 +250,6 @@ const Map2 = () => {
 
         this.map = map;
 
-        // use the Mapbox GL JS map canvas for three.js
         this.renderer = new THREE.WebGLRenderer({
           canvas: map.getCanvas(),
           context: gl,
@@ -404,10 +393,8 @@ const Map2 = () => {
       },
     };
 
-    //42.51884268158338, -92.47860570476456
     //THIRD HERE ////////////////////////////////////
 
-    //42.53315250071414, -92.55009212574228
     const modelOrigin3 = [-92.55009212574228, 42.53315250071414];
     const modelAltitude3 = 35;
 
@@ -501,8 +488,7 @@ const Map2 = () => {
       },
     };
 
-    //42.028406523989474, -93.65091505315185
-    ///mapass/coover/1437042.gltf
+
 
     const modelOrigin4 = [-93.6508888, 42.028436523989474];
     const modelAltitude4 = 0;

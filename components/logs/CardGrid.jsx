@@ -31,7 +31,7 @@ export default function BasicGrid() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`http://${process.env.BACKEND_IP}:8080/logs/all`, {
+      const response = await fetch(`http://${process.env.NEXT_PUBLIC_BACKEND_IP}:8080/logs/all`, {
         method: "GET",
       });
       const dataJSON = await response.json();
@@ -49,7 +49,7 @@ export default function BasicGrid() {
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#00FF41", //C8102E
+        main: "#00FF41",
         secondary: "#00FF41",
       },
       secondary: {
@@ -145,7 +145,6 @@ export default function BasicGrid() {
             ""
           )}
           {finalShownLogs?.map((log) => {
-            //console.log("LOG", log);
             return (
               <div className='m-1.5' key={log.id}>
                 <ThemeProvider theme={theme}>

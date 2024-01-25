@@ -17,10 +17,9 @@ const OutputGauge = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://${process.env.BACKEND_IP}:8080/generator/status`);
+        const response = await fetch(`http://${process.env.NEXT_PUBLIC_BACKEND_IP}:8080/generator/status`);
         const dataJSON = await response.json();
 
-        console.log("OUTPUTVAL 222", dataJSON.output);
 
         setOutputVal(dataJSON.output);
         setOutputPercentage(dataJSON.percentage);
@@ -99,45 +98,7 @@ const OutputGauge = () => {
       },
     };
 
-    // The output gauge
-    // const chartSpeed = Highcharts.chart(
-    //   containerOutput.current,
-    //   Highcharts.merge(gaugeOptions, {
-    //     yAxis: {
-    //       min: 0,
-    //       max: 750,
-    //       title: {
-    //         text: "&#x26A1; OUTPUT",
-    //         style: {
-    //           color: "black", // Set the color to black
-    //         },
-    //       },
-    //     },
-
-    //     credits: {
-    //       enabled: false,
-    //     },
-
-    //     series: [
-    //       {
-    //         name: "Output",
-    //         data: [outputVal],
-    //         dataLabels: {
-    //           format:
-    //             '<div style="text-align:center">' +
-    //             '<span style="font-size:25px">{y}</span><br/>' +
-    //             '<span style="font-size:12px;opacity:0.4">kW</span>' +
-    //             "</div>",
-    //         },
-    //         tooltip: {
-    //           valueSuffix: " kW",
-    //         },
-    //       },
-    //     ],
-    //   })
-    // );
-
-    // The percentage gauge
+    
     const chartRpm = Highcharts.chart(
       containerPercentage.current,
       Highcharts.merge(gaugeOptions, {
@@ -147,7 +108,7 @@ const OutputGauge = () => {
           title: {
             text: "&#x26A1; %",
             style: {
-              color: "black", // Set the color to black
+              color: "black", 
             },
           },
         },

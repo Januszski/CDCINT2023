@@ -7,7 +7,6 @@ const DisplayVid = () => {
   const [video, setVideo] = useAtom(videoAtom);
   const videoRef = useRef();
 
-  console.log("VIDEO", video);
 
   useEffect(() => {
     videoRef.current?.load();
@@ -21,7 +20,6 @@ const DisplayVid = () => {
         alignItems: "center",
         height: "95vh",
 
-        //   backgroundImage: `url(${backgroundImage.src})`,
       }}
     >
       <div

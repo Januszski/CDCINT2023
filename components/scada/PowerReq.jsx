@@ -17,11 +17,10 @@ const PowerReq = () => {
       try {
         // Fetch data from /logs/all
         const response = await fetch(
-          `http://${process.env.BACKEND_IP}:8080/substations/values`
+          `http://${process.env.NEXT_PUBLIC_BACKEND_IP}:8080/substations/values`
         );
         const dataJSON = await response.json();
 
-        // Handle the fetched data as needed
 
         setData(
           dataJSON.substationOneValue +
@@ -33,15 +32,12 @@ const PowerReq = () => {
       }
     };
 
-    // Fetch data initially
     fetchData();
 
-    // Set up interval to fetch data every minute (60000 milliseconds)
-    const intervalId = setInterval(fetchData, 4000);
+    const intervalId = setInterval(fetchData, 7000);
 
-    // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
-  }, []); // Empty dependency array to run the effect only once on mount
+  }, []); 
 
   useEffect(() => {
     Highcharts.chart(container.current, {
@@ -67,7 +63,6 @@ const PowerReq = () => {
         size: "110%",
       },
 
-      // the value axis
       yAxis: {
         min: 0,
         max: 750,
@@ -114,7 +109,7 @@ const PowerReq = () => {
             valueSuffix: " kW",
           },
           dataLabels: {
-            format: "{y} kW",
+            format: `{y} kW or ${(Number(data)/750)*100 + 1}%`,
             borderWidth: 0,
             color:
               (Highcharts.defaultOptions.title &&

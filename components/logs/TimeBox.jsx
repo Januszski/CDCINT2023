@@ -9,12 +9,11 @@ import metalImage from "../../public/metal1.jpeg";
 import { useState, useEffect } from "react";
 
 
-//#00FF41
 const TimeBox = ({ time }) => {
   const [displayedTime, setDisplayedTime] = useState(getRandomTime());
   const [initialPhaseCompleted, setInitialPhaseCompleted] = useState(false);
-  const transitionDelay = 500; // Transition to actual time after 2000 milliseconds
-  const initialUpdateInterval = 1; // Update displayed time every 100 milliseconds during initial phase
+  const transitionDelay = 500; 
+  const initialUpdateInterval = 1; 
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -22,19 +21,16 @@ const TimeBox = ({ time }) => {
   }, []);
   useEffect(() => {
     if (!initialPhaseCompleted) {
-      // Set an interval to update displayed time with random numbers during the initial phase
       const randomNumbersInterval = setInterval(() => {
         setDisplayedTime(getRandomTime());
       }, initialUpdateInterval);
 
-      // Set a timeout to transition to the actual time after the initial phase
       const timeout = setTimeout(() => {
-        clearInterval(randomNumbersInterval); // Clear the interval when transitioning to the actual time
+        clearInterval(randomNumbersInterval); 
         setDisplayedTime(time);
         setInitialPhaseCompleted(true);
       }, transitionDelay);
 
-      // Cleanup intervals and timeout on component unmount
       return () => {
         clearInterval(randomNumbersInterval);
         clearTimeout(timeout);

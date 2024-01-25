@@ -21,22 +21,20 @@ const MakeLog = () => {
   const [inputValue, setInputValue] = useState("");
 
   const handleSend = async () => {
-    const response = await fetch(`http://${process.env.BACKEND_IP}:8080/logs/new`, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      // credentials: "same-origin", // include, *same-origin, omit
+    const response = await fetch(`http://${process.env.NEXT_PUBLIC_BACKEND_IP}:8080/logs/new`, {
+      method: "POST",  
+     
       headers: {
         "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
+        
       },
-      // redirect: "follow", // manual, *follow, error
-      // referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: inputValue, // body data type must match "Content-Type" header
+    
+      body: inputValue, 
     });
 
     const responseJson = await response.json();
 
-    return responseJson; // parses JSON response into native JavaScript objects
+    return responseJson; 
   };
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -45,7 +43,7 @@ const MakeLog = () => {
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#00FF41", //C8102E
+        main: "#00FF41", 
         secondary: "#00FF41",
       },
       secondary: {
@@ -77,8 +75,7 @@ const MakeLog = () => {
             onChange={handleInputChange}
             value={inputValue}
             id='input-with-icon-adornment'
-            // color="#00FF41"
-            //inputProps={{ maxLength: 30 }}
+          
             startAdornment={
               <InputAdornment
                 position='start'

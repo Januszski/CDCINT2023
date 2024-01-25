@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-// import { timeRangeAtom } from "@/app/atom";
 import { dateAtom, timeRangeAtom } from "@/app/atom";
 import { atom, useAtom } from "jotai";
 import { useEffect } from "react";
@@ -28,9 +27,9 @@ export default function MinimumDistanceSlider() {
     }
   };
 
-  const [value2, setValue2] = React.useState([0, 100]); ///////////
+  const [value2, setValue2] = React.useState([0, 100]); 
 
-  const [time, setTime] = useAtom(timeRangeAtom); ///////////
+  const [time, setTime] = useAtom(timeRangeAtom); 
 
   let t = time;
 
@@ -132,10 +131,8 @@ export default function MinimumDistanceSlider() {
           getAriaLabel={() => "Minimum distance shift"}
           value={value2}
           onChange={handleChange2}
-          // valueLabelDisplay='auto'
           getAriaValueText={valuetext}
           step={4.16666666667}
-          // marks={marks}
           disableSwap
         />
       </Box>

@@ -10,10 +10,7 @@ import FullLog from "@/components/logs/FullLog";
 import backgroundImage from "../../../../public/webb-dark.png";
 
 const page = ({ params }) => {
-  // const shownLog = array.filter((log) => {
-  //   return log.id === Number(params.id);
-  // });
-  // console.log("SHOWN LOG:", shownLog);
+  
 
   return (
     <>

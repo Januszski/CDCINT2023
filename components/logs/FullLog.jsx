@@ -1,5 +1,4 @@
 import React from "react";
-// import EditField from "@/components/logs/EditField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
@@ -24,22 +23,20 @@ const FullLog = ({ params }) => {
 
   const handleSend = async () => {
     const response = await fetch(
-      `http://${process.env.BACKEND_IP}:8080/logs/${params.id}/comment`,
+      `http://${process.env.NEXT_PUBLIC_BACKEND_IP}:8080/logs/${params.id}/comment`,
       {
-        method: "PUT", // *GET, POST, PUT, DELETE, etc.
-        // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        // credentials: "same-origin", // include, *same-origin, omit
+        method: "PUT",
+      
         headers: {
           "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
+         
         },
-        // redirect: "follow", // manual, *follow, error
-        // referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: textValue ? textValue : " ", // body data type must match "Content-Type" header
+     
+        body: textValue ? textValue : " ", 
       }
     );
     setFetchNow((prevState) => !prevState);
-    return response.json(); // parses JSON response into native JavaScript objects
+    return response.json(); 
   };
 
   let shownLog = data;
@@ -47,38 +44,21 @@ const FullLog = ({ params }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch data from /logs/all
-        const response = await fetch(`http://${process.env.BACKEND_IP}:8080/logs/${params.id}`);
+        const response = await fetch(`http://${process.env.NEXT_PUBLIC_BACKEND_IP}:8080/logs/${params.id}`);
         const dataJSON = await response.json();
 
-        // Handle the fetched data as needed
-        console.log(dataJSON);
         setData(dataJSON);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-    // Fetch data initially
     fetchData();
 
-    // Set up interval to fetch data every minute (60000 milliseconds)
     const intervalId = setInterval(fetchData, 4000);
 
-    // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
-  }, [fetchNow]); // Empty dependency array to run the effect only once on mount
-
-  // if (data !== undefined) {
-  //   const shownLog = data.filter((log) => {
-  //     console.log("LOG", log);
-  //     console.log("PARAM", params.id);
-  //     console.log("RETURNED", log.id === Number(params.id));
-
-  //     return log.id === Number(params.id);
-  //   });
-  //   console.log("SHOWN LOG:", shownLog);
-  // }
+  }, [fetchNow]); 
 
   const handleInputChange = (event) => {
     setTextValue(event.target.value);
@@ -87,7 +67,7 @@ const FullLog = ({ params }) => {
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#00FF41", //C8102E
+        main: "#00FF41",
         secondary: "#00FF41",
       },
       secondary: {
@@ -107,7 +87,6 @@ const FullLog = ({ params }) => {
             alignItems: "center",
             height: "100vh",
 
-            //   backgroundImage: `url(${backgroundImage.src})`,
           }}
         >
           <div
@@ -149,8 +128,7 @@ const FullLog = ({ params }) => {
                 onChange={handleInputChange}
                 value={textValue}
                 id='input-with-icon-adornment'
-                // color="#00FF41"
-                //inputProps={{ maxLength: 30 }}
+                
                 startAdornment={
                   <InputAdornment position='start' style={{ color: "#00FF41" }}>
                     <AccountCircle />

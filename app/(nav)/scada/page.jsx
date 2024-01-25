@@ -12,6 +12,10 @@ import InputkW from "@/components/scada/InputkW";
 import PowerReq from "@/components/scada/PowerReq";
 import OutputGauge from "@/components/scada/OutputGauge";
 
+//NOTE: zoom out is low because these vms cannot handle much rendering and so zooming out too far
+//causes an error (webgl failed to load). If you want to adjust this, you can go in map2.jsx in /components and decrease
+//the minZoom property, but you might run into that error in which case fix by restarting frontend server (ctrl c and npm run start again)
+
 const page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
 

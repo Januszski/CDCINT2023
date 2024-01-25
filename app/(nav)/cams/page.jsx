@@ -11,7 +11,7 @@ const page = () => {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "auto 1fr", // Adjust the column sizes as needed
+          gridTemplateColumns: "auto 1fr", 
           backgroundImage: `url(${backgroundImage.src})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
