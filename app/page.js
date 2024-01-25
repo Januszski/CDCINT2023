@@ -6,6 +6,7 @@ import PieChart from "@/components/DoughnutChart";
 import DoughnutChart from "@/components/DoughnutChart";
 import ImageList from "@/components/ImageList";
 import Typewriter from "@/components/TypeWriter";
+//tests
 
 export default function Home() {
   return (
