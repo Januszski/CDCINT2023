@@ -17,7 +17,7 @@ const PowerReq = () => {
       try {
         // Fetch data from /logs/all
         const response = await fetch(
-          `http://localhost:8080/substations/values`
+          `http://${process.env.BACKEND_IP}:8080/substations/values`
         );
         const dataJSON = await response.json();
 

@@ -21,7 +21,7 @@ const MakeLog = () => {
   const [inputValue, setInputValue] = useState("");
 
   const handleSend = async () => {
-    const response = await fetch(`http://localhost:8080/logs/new`, {
+    const response = await fetch(`http://${process.env.BACKEND_IP}:8080/logs/new`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       // credentials: "same-origin", // include, *same-origin, omit

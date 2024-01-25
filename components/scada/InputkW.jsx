@@ -29,7 +29,7 @@ const InputkW = () => {
 
   const handleSend = async () => {
     const inputObj = { percentage: Number(inputValue) };
-    const response = await fetch(`http://localhost:8080/generator/update`, {
+    const response = await fetch(`http://${process.env.BACKEND_IP}:8080/generator/update`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       // credentials: "same-origin", // include, *same-origin, omit

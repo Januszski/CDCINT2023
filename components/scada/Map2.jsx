@@ -24,8 +24,10 @@ const Map2 = () => {
       const tempMap = new mapboxgl.Map({
         container: mapContainer.current,
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-        style: "mapbox://styles/iseman/clrgwcl7c00bw01pdatkc8gzo?optimize=true",
+        style: "mapbox://styles/iseman/clrgwcl7c00bw01pdatkc8gzo",
         //mapbox://styles/iseman/clrch7ga5007k01pi8ax94dsj
+        //mapbox://styles/mapbox/dark-v11
+        //mapbox://styles/iseman/clrgwcl7c00bw01pdatkc8gzo?optimize=true
         minZoom: 5,
 
         zoom: mapPos.zoom,

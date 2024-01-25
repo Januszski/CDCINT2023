@@ -12,11 +12,9 @@ import Card from "@mui/material/Card";
 import { atom, useAtom } from "jotai";
 import { dateAtom, timeRangeAtom, logDataAtom } from "@/app/atom";
 import dayjs from "dayjs";
-import { Bebas_Neue } from "next/font/google";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-const Bebas = Bebas_Neue({ subsets: ["latin"], weight: "400" });
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -33,7 +31,7 @@ export default function BasicGrid() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://10.48.83.70:8080/logs/all", {
+      const response = await fetch(`http://${process.env.BACKEND_IP}:8080/logs/all`, {
         method: "GET",
       });
       const dataJSON = await response.json();
@@ -137,7 +135,7 @@ export default function BasicGrid() {
         <Grid container flexDirection='row' columns={6} id='log-grid'>
           {finalShownLogs.length === 0 ? (
             <div
-              className={`${Bebas.className} flex items-center justify-center`}
+              className={` flex items-center justify-center`}
               style={{ color: "#00FF41", fontSize: "2rem", marginTop: "15px" }}
             >
               {" "}

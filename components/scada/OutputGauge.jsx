@@ -17,7 +17,7 @@ const OutputGauge = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/generator/status");
+        const response = await fetch(`http://${process.env.BACKEND_IP}:8080/generator/status`);
         const dataJSON = await response.json();
 
         console.log("OUTPUTVAL 222", dataJSON.output);

@@ -10,7 +10,7 @@ import Typewriter from "@/components/TypeWriter";
 export default function Home() {
   return (
     <>
-      <section className='w-full gradientBackground min-h-screen'>
+      <section className='w-full gradientBackground min-h-screen mt-3'>
         {/* <div className='flex-center mb-10'> */}
         {/* <div className='flex-row flex justify-around w-full'>
           <div>

@@ -7,21 +7,20 @@ const handler = NextAuth({
         CredentialsProvider({
           name: "LDAP",
           credentials: {
-            username: { label: "DN", type: "text", placeholder: "" },
+            username: { label: "TEAM<team #>\\<username>", type: "text", placeholder: "" },
             password: { label: "Password", type: "password" },
           },
           async authorize(credentials, req) {
-            // You might want to pull this call out so we're not making a new LDAP client on every login attemp
             const client = ldap.createClient({
               url: process.env.LDAP_URI,
             })
     
-            // Essentially promisify the LDAPJS client.bind function
             return new Promise((resolve, reject) => {
               client.bind(credentials.username, credentials.password, (error) => {
                 if (error) {
                   console.error("Failed")
-                  reject()
+                   reject()
+                 
                 } else {
                   console.log("Logged in")
                   resolve({

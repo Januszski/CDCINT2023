@@ -9,27 +9,27 @@ const PickCam = () => {
 
   const handleCam1 = () => {
     setCamera(1);
-    setVideo("http://localhost:8000/CooverCam1.mp4");
+    setVideo(`http://${env.local.CAM_IP}:8000/CooverCam1.mp4`);
   };
   const handleCam2 = () => {
     setCamera(2);
-    setVideo("http://localhost:8000/CooverCam2.mp4");
+    setVideo(`http://${env.local.CAM_IP}:8000/CooverCam2.mp4`);
   };
   const handleCam3 = () => {
     setCamera(3);
-    setVideo("http://localhost:8000/CooverCam3.mp4");
+    setVideo(`http://${env.local.CAM_IP}:8000/CooverCam3.mp4`);
   };
   const handleCam4 = () => {
     setCamera(4);
-    setVideo("http://localhost:8000/CooverCam4.mp4");
+    setVideo(`http://${env.local.CAM_IP}:8000/CooverCam4.mp4`);
   };
   const handleCam5 = () => {
     setCamera(5);
-    setVideo("http://localhost:8000/CooverCam5.mp4");
+    setVideo(`http://${env.local.CAM_IP}:8000/CooverCam5.mp4`);
   };
   const handleCam6 = () => {
     setCamera(6);
-    setVideo("http://localhost:8000/CooverCam6.mp4");
+    setVideo(`http://${env.local.CAM_IP}:8000/CooverCam6.mp4`);
   };
 
   return (

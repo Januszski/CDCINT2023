@@ -24,7 +24,7 @@ const FullLog = ({ params }) => {
 
   const handleSend = async () => {
     const response = await fetch(
-      `http://localhost:8080/logs/${params.id}/comment`,
+      `http://${process.env.BACKEND_IP}:8080/logs/${params.id}/comment`,
       {
         method: "PUT", // *GET, POST, PUT, DELETE, etc.
         // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -48,7 +48,7 @@ const FullLog = ({ params }) => {
     const fetchData = async () => {
       try {
         // Fetch data from /logs/all
-        const response = await fetch(`http://localhost:8080/logs/${params.id}`);
+        const response = await fetch(`http://${process.env.BACKEND_IP}:8080/logs/${params.id}`);
         const dataJSON = await response.json();
 
         // Handle the fetched data as needed

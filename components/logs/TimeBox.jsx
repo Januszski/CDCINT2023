@@ -6,10 +6,8 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import backgroundImage from "../../public/BG58.jpeg";
 import metalImage from "../../public/metal1.jpeg";
-import { Black_Ops_One } from "next/font/google";
 import { useState, useEffect } from "react";
 
-const clock = Black_Ops_One({ subsets: ["latin"], weight: "400" });
 
 //#00FF41
 const TimeBox = ({ time }) => {
@@ -67,7 +65,7 @@ const TimeBox = ({ time }) => {
           className='  h-60 flex items-center justify-center'
         >
           <div
-            className={`${clock.className} `}
+            className={` `}
             style={{ color: "#00FF41", fontSize: "2rem" }}
           >
             {" "}

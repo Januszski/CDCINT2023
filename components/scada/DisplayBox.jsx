@@ -2,9 +2,7 @@ import React from "react";
 import backgroundImage from "../../public/BG58.jpeg";
 import metalImage from "../../public/metal1.jpeg";
 import Container from "@mui/material/Container";
-import { Black_Ops_One } from "next/font/google";
 
-const clock = Black_Ops_One({ subsets: ["latin"], weight: "400" });
 
 const DisplayBox = ({ text, number, abr }) => {
   return (
@@ -17,20 +15,20 @@ const DisplayBox = ({ text, number, abr }) => {
       className='  h-60 flex items-center justify-center'
     >
       <div
-        className={`${clock.className} `}
+        className={` `}
         style={{ color: "#FFFF00", fontSize: "2rem" }}
       >
         {" "}
         {text}
         {": "}
         <span
-          className={`${clock.className} `}
+          className={` `}
           style={{ color: "#FF0000", fontSize: "2rem" }}
         >
           {number}
         </span>
         <span
-          className={`${clock.className} `}
+          className={` `}
           style={{ color: "#FF0000", fontSize: "2rem" }}
         >
           {abr}

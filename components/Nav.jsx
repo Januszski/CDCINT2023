@@ -14,17 +14,8 @@ import Link from "next/link";
 import Image from "next/image";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import { Zen_Dots } from "next/font/google";
-import { Dhurjati } from "next/font/google";
 
-const ZenDots = Zen_Dots({
-  subsets: ["latin"],
-  weight: "400",
-});
-const Dhuj = Dhurjati({
-  subsets: ["latin"],
-  weight: "400",
-});
+
 
 const theme = createTheme({
   palette: {
@@ -86,7 +77,7 @@ export default function ElevateAppBar(props) {
                   {/* <p className='logo_text'>Isetricity Energy</p> */}
 
                   <div
-                    className={`${ZenDots.className} text-xl text-lg text-indigo-100`}
+                    className={` text-xl text-lg text-indigo-100`}
                   >
                     ISE<span className='text-blue-500'>tricity</span>
                   </div>
@@ -98,7 +89,8 @@ export default function ElevateAppBar(props) {
                 >
                   <Link href='/scada'>
                     <Button
-                      className={`${ZenDots.className} text-xl text-blue-700`}
+                    style={{color: "#ffff00"}}
+                      className={` text-xl text-blue-700`}
                     >
                       SCADA
                     </Button>
@@ -106,7 +98,7 @@ export default function ElevateAppBar(props) {
                   <Link href='/logs'>
                     <Button
                       style={{ color: "#00FF41" }}
-                      className={`${ZenDots.className} text-xl text-lg`}
+                      className={` text-xl text-lg`}
                     >
                       LOGS
                     </Button>
@@ -114,9 +106,17 @@ export default function ElevateAppBar(props) {
                   <Link href='/cams'>
                     <Button
                       style={{ color: "#FF0000" }}
-                      className={`${ZenDots.className} text-xl text-lg `}
+                      className={` text-xl text-lg `}
                     >
                       CAMS
+                    </Button>
+                  </Link>
+                  <Link href='/api/auth/signout'>
+                    <Button
+                      style={{ color: "#FFFFFF" }}
+                      className={` text-xl text-lg `}
+                    >
+                      SIGNOUT
                     </Button>
                   </Link>
                 </ButtonGroup>
